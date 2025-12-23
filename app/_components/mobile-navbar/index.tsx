@@ -1,41 +1,99 @@
-// export interface Props {}
+'use client'
 
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger
+} from '@/components/ui/sheet'
 import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export function MobileNavbar() {
+  const optionsLogged = [
+    {
+      label: 'Início',
+      href: '/'
+    },
+    {
+      label: 'Explorar',
+      href: '/explorar'
+    },
+    {
+      label: 'Minha conta',
+      href: '/minha-conta'
+    },
+    {
+      label: 'Lista de desejos',
+      href: '/lista-de-desejos'
+    }
+  ]
+
+  const pathname = usePathname()
+
+  const isActive = (href: string) => pathname === href
   return (
     <nav className="p-6 flex items-center sm:hidden justify-between relative">
-      <div>
-        <svg
-          width="25"
-          height="16"
-          viewBox="0 0 25 16"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0.75 0.75H23.75"
-            stroke="white"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M0.75 7.75H14.6368"
-            stroke="white"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M0.75 14.75H21.5802"
-            stroke="white"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      </div>
+      <Sheet>
+        <SheetTrigger>
+          <div>
+            <svg
+              width="25"
+              height="16"
+              viewBox="0 0 25 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0.75 0.75H23.75"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M0.75 7.75H14.6368"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M0.75 14.75H21.5802"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+        </SheetTrigger>
+        <SheetTitle></SheetTitle>
+        <SheetDescription></SheetDescription>
+        <SheetContent side="left" className="w-full">
+          <SheetHeader></SheetHeader>
+          <div className="h-full flex flex-col items-center pt-44  gap-9.5">
+            {optionsLogged.map((option, i) => (
+              <Link
+                href={option.href}
+                key={i}
+                className={`text-2xl font-sans font-semibold text-sidebar-primary-foreground ${isActive(option.href) && 'underline decoration-sidebar-accent underline-offset-8 decoration-3'}`}
+              >
+                {option.label}
+              </Link>
+            ))}
+          </div>
+        </SheetContent>
+      </Sheet>
 
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <Image src="/logo.png" alt="Won Games" width={58} height={45} />
+        <Image
+          src="/logo.png"
+          alt="Won Games"
+          width={58}
+          height={45}
+          loading="eager"
+        />
       </div>
 
       <div className="flex items-center gap-4.5">

@@ -1,9 +1,16 @@
+import path from 'path'
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './')
+    }
+  },
   test: {
     globals: true,
     setupFiles: ['./test/setup.ts'],
-    environment: 'happy-dom'
+    environment: 'happy-dom',
+    include: ['**/*.{test,spec}.{ts,tsx,js,jsx}']
   }
 })

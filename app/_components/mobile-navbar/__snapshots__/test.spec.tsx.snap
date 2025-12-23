@@ -4,34 +4,53 @@ exports[`<MobileNavbar /> > should render the mobile navbar 1`] = `
 <nav
   class="p-6 flex items-center sm:hidden justify-between relative"
 >
-  <div>
-    <svg
-      fill="none"
-      height="16"
-      viewBox="0 0 25 16"
-      width="25"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M0.75 0.75H23.75"
-        stroke="white"
-        stroke-linecap="round"
-        stroke-width="1.5"
-      />
-      <path
-        d="M0.75 7.75H14.6368"
-        stroke="white"
-        stroke-linecap="round"
-        stroke-width="1.5"
-      />
-      <path
-        d="M0.75 14.75H21.5802"
-        stroke="white"
-        stroke-linecap="round"
-        stroke-width="1.5"
-      />
-    </svg>
-  </div>
+  <button
+    aria-controls="radix-_r_0_"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    data-slot="sheet-trigger"
+    data-state="closed"
+    type="button"
+  >
+    <div>
+      <svg
+        fill="none"
+        height="16"
+        viewBox="0 0 25 16"
+        width="25"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0.75 0.75H23.75"
+          stroke="white"
+          stroke-linecap="round"
+          stroke-width="1.5"
+        />
+        <path
+          d="M0.75 7.75H14.6368"
+          stroke="white"
+          stroke-linecap="round"
+          stroke-width="1.5"
+        />
+        <path
+          d="M0.75 14.75H21.5802"
+          stroke="white"
+          stroke-linecap="round"
+          stroke-width="1.5"
+        />
+      </svg>
+    </div>
+  </button>
+  <h2
+    class="text-sidebar-foreground font-semibold"
+    data-slot="sheet-title"
+    id="radix-_r_1_"
+  />
+  <p
+    class="text-sidebar-foreground text-sm"
+    data-slot="sheet-description"
+    id="radix-_r_2_"
+  />
   <div
     class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
   >
@@ -40,7 +59,7 @@ exports[`<MobileNavbar /> > should render the mobile navbar 1`] = `
       data-nimg="1"
       decoding="async"
       height="45"
-      loading="lazy"
+      loading="eager"
       src="/_next/image?url=%2Flogo.png&w=128&q=75"
       srcset="/_next/image?url=%2Flogo.png&w=64&q=75 1x, /_next/image?url=%2Flogo.png&w=128&q=75 2x"
       style="color: transparent;"
