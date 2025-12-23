@@ -8,13 +8,14 @@
     "start": "next start",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "test:watch": "vitest watch"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
       "eslint --fix",
       "prettier --write",
-      "pnpm run test -- --findRelatedTests"
+      "pnpm run test"
     ],
     "*.{css,scss,json,md}": "prettier --write"
   },
