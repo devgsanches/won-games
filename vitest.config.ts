@@ -17,21 +17,6 @@ export default defineConfig({
       '@': root
     }
   },
-  plugins: [
-    // Plugin para corrigir o erro do Next.js no Storybook
-    {
-      name: 'fix-next-router-error',
-      resolveId(id) {
-        // Corrigir o caminho completo do erro
-        if (
-          id.includes('next/dist/client/components/is-next-router-error') &&
-          !id.endsWith('.js')
-        ) {
-          return id + '.js'
-        }
-      }
-    }
-  ],
   test: {
     globals: true,
     setupFiles: ['./test/setup.ts'],
@@ -41,51 +26,35 @@ export default defineConfig({
       include: ['app/**/_components/**/*.{ts,tsx}'],
       exclude: ['app/**/components/ui/**/*.{ts,tsx,js,jsx}']
     },
-    projects: [
-      {
-        name: 'unit',
-        test: {
-          globals: true,
-          include: ['**/*.{test,spec}.{ts,tsx,js,jsx}'],
-          exclude: [
-            '**/*.stories.{ts,tsx}',
-            '**/node_modules/**',
-            '**/dist/**',
-            '**/.next/**',
-            '**/coverage/**'
-          ]
-        },
-        resolve: {
-          alias: {
-            '@': root
-          }
-        }
-      }
-      // Projeto Storybook desabilitado temporariamente até resolver o bug do Next.js
-      // {
-      //   extends: true,
-      //   plugins: [
-      //     storybookTest({
-      //       configDir: path.join(dirname, '.storybook')
-      //     })
-      //   ],
-      //   test: {
-      //     name: 'storybook',
-      //     environment: 'happy-dom',
-      //     setupFiles: ['.storybook/vitest.setup.ts'],
-      //     exclude: [
-      //       '**/node_modules/**',
-      //       '**/dist/**',
-      //       '**/.next/**',
-      //       '**/coverage/**'
-      //     ]
-      //   },
-      //   resolve: {
-      //     alias: {
-      //       '@': root
-      //     }
-      //   }
-      // }
+    include: ['**/*.{test,spec}.{ts,tsx,js,jsx}'],
+    exclude: [
+      '**/*.stories.{ts,tsx}',
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/.next/**',
+      '**/coverage/**'
     ]
+    // Projeto Storybook desabilitado temporariamente até resolver o bug do Next.js
+    // projects: [
+    //   {
+    //     extends: true,
+    //     plugins: [
+    //       storybookTest({
+    //         configDir: path.join(dirname, '.storybook')
+    //       })
+    //     ],
+    //     test: {
+    //       name: 'storybook',
+    //       environment: 'happy-dom',
+    //       setupFiles: ['.storybook/vitest.setup.ts'],
+    //       exclude: [
+    //         '**/node_modules/**',
+    //         '**/dist/**',
+    //         '**/.next/**',
+    //         '**/coverage/**'
+    //       ]
+    //     }
+    //   }
+    // ]
   }
 })
