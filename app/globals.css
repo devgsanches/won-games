@@ -3,12 +3,16 @@
 @theme inline {
   /* Design System Colors */
   --color-black: var(--black);
+  --color-black-native: var(--black-native);
   --color-pink: var(--pink);
   --color-orange: var(--orange);
   --color-white: var(--white);
   --color-background: var(--background);
   --color-gray-1: var(--gray-1);
   --color-gray-2: var(--gray-2);
+  --color-gray-3: var(--gray-3);
+  --color-gray-4: var(--gray-4);
+  --color-gray-light: var(--gray-light);
   --color-green: var(--green);
 
   /* Semantic Colors */
@@ -68,12 +72,16 @@
 
   /* Design System Colors */
   --black: #030517;
+  --black-native: #000000;
   --pink: #f231a5;
   --orange: #ff8c42;
   --white: #fafafa;
   --background: #06092b;
   --gray-1: #eaeaea;
   --gray-2: #969696;
+  --gray-3: #666666;
+  --gray-4: #2e2f42;
+  --gray-light: #bbbbbb;
   --green: #3cd3c1;
   --green-dark: #35bdac;
   --gradient-pink: linear-gradient(
@@ -129,5 +137,8 @@
 @layer utilities {
   .bg-gradient-pink {
     background: var(--gradient-pink);
+  }
+  .footer-polygon {
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
   }
 }

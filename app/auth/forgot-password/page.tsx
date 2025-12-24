@@ -13,6 +13,7 @@ import {
   FormMessage
 } from '@/components/ui/form'
 import { Input } from '../components/input'
+import { SimpleUnderline } from '@/app/(app)/_components/simple-urderline'
 
 const formSchema = z.object({
   currentPassword: z.string(),
@@ -39,7 +40,7 @@ export default function SignIn() {
         <h2 className="font-sans text-2xl font-semibold capitalize">
           alterar senha
         </h2>
-        <div className="w-12.25 h-1.75 bg-pink"></div>
+        <SimpleUnderline color="pink" position="horizontal" />
       </div>
       <div className="h-full">
         <Form {...form}>

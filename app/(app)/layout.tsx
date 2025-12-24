@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import '@/app/globals.css'
-import { MobileNavbar } from '@/app/_components/mobile-navbar'
+import { MobileNavbar } from '@/app/(app)/_components/mobile-navbar'
 
 export const metadata: Metadata = {
   title: 'Won Games',
@@ -13,7 +13,7 @@ export default function AppLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="min-h-screen bg-sidebar  text-sidebar-foreground">
+    <div className="min-h-screen bg-sidebar text-sidebar-foreground overflow-x-hidden">
       <MobileNavbar />
       {children}
     </div>

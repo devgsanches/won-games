@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '../components/input'
 import Link from 'next/link'
+import { SimpleUnderline } from '@/app/(app)/_components/simple-urderline'
 
 const formSchema = z.object({
   email: z.email({
@@ -39,7 +40,7 @@ export default function SignIn() {
   return (
     <div className="flex flex-col gap-6.75 mt-23 w-full px-6">
       <div className="flex items-center gap-2.75">
-        <div className="w-1.75 h-7.75 bg-ring"></div>
+        <SimpleUnderline color="green" position="vertical" />
         <h2 className="font-sans text-2xl font-semibold">Entrar</h2>
       </div>
       <div>

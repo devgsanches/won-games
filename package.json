@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "preview": "vite preview",
-    "test": "vitest",
-    "test:watch": "vitest watch",
+    "test:watch": "vitest",
     "test:ci": "vitest run"
   },
   "lint-staged": {
@@ -40,6 +39,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.69.0",
+    "swiper": "^12.0.3",
     "tailwind-merge": "^3.4.0",
     "typescript-eslint": "^8.50.1",
     "zod": "^4.2.1"
