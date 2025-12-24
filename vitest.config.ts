@@ -12,7 +12,10 @@ const dirname =
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './')
+      '@': path.resolve(__dirname, './'),
+      // Fix para o erro do Next.js no Storybook
+      'next/dist/client/components/is-next-router-error':
+        'next/dist/client/components/is-next-router-error.js'
     }
   },
   test: {
@@ -24,11 +27,11 @@ export default defineConfig({
       include: ['app/**/_components/**/*.{ts,tsx}'],
       exclude: ['app/**/components/ui/**/*.{ts,tsx,js,jsx}']
     },
-    // Removido test.include do nível raiz - o plugin do Storybook gerencia isso
     projects: [
       {
         name: 'unit',
         test: {
+          globals: true,
           include: ['**/*.{test,spec}.{ts,tsx,js,jsx}'],
           exclude: [
             '**/*.stories.{ts,tsx}',
@@ -57,14 +60,7 @@ export default defineConfig({
             '**/dist/**',
             '**/.next/**',
             '**/coverage/**'
-          ],
-          // Adicionar resolve para lidar com módulos do Next.js
-          resolve: {
-            alias: {
-              'next/dist/client/components/is-next-router-error':
-                'next/dist/client/components/is-next-router-error.js'
-            }
-          }
+          ]
         }
       }
     ]
