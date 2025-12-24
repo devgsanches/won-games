@@ -17,7 +17,7 @@
       "prettier --write"
     ],
     "*.{test,spec}.{ts,tsx}": [
-      "pnpm run test --"
+      "pnpm run test:watch --"
     ],
     "*.{css,scss,json,md}": "prettier --write"
   },
