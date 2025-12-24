@@ -2,6 +2,7 @@ import path from 'path'
 import { defineConfig } from 'vitest/config'
 import { fileURLToPath } from 'node:url'
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin'
+
 const dirname =
   typeof __dirname !== 'undefined'
     ? __dirname
@@ -23,8 +24,15 @@ export default defineConfig({
       include: ['app/**/_components/**/*.{ts,tsx}'],
       exclude: ['app/**/components/ui/**/*.{ts,tsx,js,jsx}']
     },
-    include: ['**/*.{test,spec}.{ts,tsx,js,jsx}'],
+    // Removido test.include do nível raiz - o plugin do Storybook gerencia isso
     projects: [
+      {
+        name: 'unit',
+        test: {
+          include: ['**/*.{test,spec}.{ts,tsx,js,jsx}'],
+          exclude: ['**/*.stories.{ts,tsx}']
+        }
+      },
       {
         extends: true,
         plugins: [
@@ -36,16 +44,15 @@ export default defineConfig({
         ],
         test: {
           name: 'storybook',
-          browser: {
-            enabled: false,
-            headless: true,
-            instances: [
-              {
-                browser: 'chromium'
-              }
-            ]
-          },
-          setupFiles: ['.storybook/vitest.setup.ts']
+          environment: 'happy-dom',
+          setupFiles: ['.storybook/vitest.setup.ts'],
+          // Adicionar resolve para lidar com módulos do Next.js
+          resolve: {
+            alias: {
+              'next/dist/client/components/is-next-router-error':
+                'next/dist/client/components/is-next-router-error.js'
+            }
+          }
         }
       }
     ]
