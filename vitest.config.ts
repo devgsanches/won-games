@@ -30,7 +30,13 @@ export default defineConfig({
         name: 'unit',
         test: {
           include: ['**/*.{test,spec}.{ts,tsx,js,jsx}'],
-          exclude: ['**/*.stories.{ts,tsx}']
+          exclude: [
+            '**/*.stories.{ts,tsx}',
+            '**/node_modules/**',
+            '**/dist/**',
+            '**/.next/**',
+            '**/coverage/**'
+          ]
         }
       },
       {
@@ -46,6 +52,12 @@ export default defineConfig({
           name: 'storybook',
           environment: 'happy-dom',
           setupFiles: ['.storybook/vitest.setup.ts'],
+          exclude: [
+            '**/node_modules/**',
+            '**/dist/**',
+            '**/.next/**',
+            '**/coverage/**'
+          ],
           // Adicionar resolve para lidar com módulos do Next.js
           resolve: {
             alias: {
