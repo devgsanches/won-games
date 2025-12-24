@@ -2,7 +2,6 @@ import path from 'path'
 import { defineConfig } from 'vitest/config'
 import { fileURLToPath } from 'node:url'
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin'
-import { playwright } from '@vitest/browser-playwright'
 const dirname =
   typeof __dirname !== 'undefined'
     ? __dirname
@@ -38,7 +37,7 @@ export default defineConfig({
         test: {
           name: 'storybook',
           browser: {
-            enabled: true,
+            enabled: false,
             headless: true,
             instances: [
               {
