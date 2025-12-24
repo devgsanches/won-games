@@ -8,16 +8,26 @@ const dirname =
     ? __dirname
     : path.dirname(fileURLToPath(import.meta.url))
 
+const root = path.resolve(dirname, './')
+
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './'),
-      // Fix para o erro do Next.js no Storybook
-      'next/dist/client/components/is-next-router-error':
-        'next/dist/client/components/is-next-router-error.js'
+      '@': root
     }
   },
+  plugins: [
+    // Plugin para corrigir o erro do Next.js no Storybook
+    {
+      name: 'fix-next-router-error',
+      resolveId(id) {
+        if (id === 'next/dist/client/components/is-next-router-error') {
+          return 'next/dist/client/components/is-next-router-error.js'
+        }
+      }
+    }
+  ],
   test: {
     globals: true,
     setupFiles: ['./test/setup.ts'],
