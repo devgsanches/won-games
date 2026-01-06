@@ -1,144 +1,69 @@
 @import 'tailwindcss';
 
 @theme inline {
-  /* Design System Colors */
-  --color-black: var(--black);
-  --color-black-native: var(--black-native);
-  --color-pink: var(--pink);
-  --color-orange: var(--orange);
-  --color-white: var(--white);
-  --color-background: var(--background);
-  --color-gray-1: var(--gray-1);
-  --color-gray-2: var(--gray-2);
-  --color-gray-3: var(--gray-3);
-  --color-gray-4: var(--gray-4);
-  --color-gray-light: var(--gray-light);
-  --color-green: var(--green);
+  /* Colors */
 
-  /* Semantic Colors */
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-ring-dark: var(--ring-dark);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
+  /* Para usar, basta utilizar text-primary (text + nome da variável, o tailwind V4 torna o 'color-' opcional) */
+  --color-primary: #f231a5;
+  --color-secondary: #3cd3c1;
+  --color-main-bg: #06092b;
+  --color-white: #fafafa;
+  --color-black: #030517;
+  --color-light-gray: #eaeaea;
+  --color-gray: #8f8f8f;
+  --color-dark-gray: #2e2f42;
 
-  /* Sidebar Colors */
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  /* Para usar, basta utilizar font-family-inter (font-family + nome da variável) */
 
-  /* Chart Colors */
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+  /* Typography - usa as variáveis injetadas pelo next/font */
+  --font-family-inter:
+    var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-family-fira: var(--font-fira-sans), sans-serif;
+  --font-family-playwrite-ro: var(--font-playwrite-ro), sans-serif;
 
-  /* Typography */
-  --font-sans: var(--font-poppins);
-  --font-space: var(--font-space-grotesk);
+  /* Para usar, basta utilizar text-xsmall (text + nome da variável) */
 
-  /* Border Radius */
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
+  /* Font Sizes */
+  --text-xsmall: 1.2rem;
+  --text-small: 1.4rem;
+  --text-medium: 1.6rem;
+  --text-large: 1.8rem;
+  --text-xlarge: 2rem;
+  --text-xxlarge: 2.8rem;
+
+  /* Para utilizar, basta utilizar gap-large (gap + nome da variável) */
+  /* Spacings */
+  --spacing-xxsmall: 0.8rem;
+  --spacing-xsmall: 1.6rem;
+  --spacing-small: 2.4rem;
+  --spacing-medium: 3.2rem;
+  --spacing-large: 4rem;
+  --spacing-xlarge: 4.8rem;
+  --spacing-xxlarge: 5.6rem;
 }
 
 :root {
-  /* Border Radius */
-  --radius: 0.625rem;
+  /* Grid */
 
-  /* Design System Colors */
-  --black: #030517;
-  --black-native: #000000;
-  --pink: #f231a5;
-  --orange: #ff8c42;
-  --white: #fafafa;
-  --background: #06092b;
-  --gray-1: #eaeaea;
-  --gray-2: #969696;
-  --gray-3: #666666;
-  --gray-4: #2e2f42;
-  --gray-light: #bbbbbb;
-  --green: #3cd3c1;
-  --green-dark: #35bdac;
-  --gradient-pink: linear-gradient(
-    178.59deg,
-    #ff5f5f -14.51%,
-    #f062c0 102.86%,
-    #f23131 102.86%
-  );
-  /* Semantic Colors */
-  --foreground: #ffffff;
-  --primary: var(--pink);
-  --primary-foreground: var(--black);
-  --secondary: var(--gray-1);
-  --secondary-foreground: var(--white);
-  --accent: var(--pink);
-  --accent-foreground: var(--white);
-  --muted: var(--gray-1);
-  --muted-foreground: var(--white);
-  --destructive: #ef4444;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.1);
-  --ring: var(--green);
-  --ring-dark: var(--green-dark);
-  --card: rgba(255, 255, 255, 0.05);
-  --card-foreground: var(--white);
-  --popover: rgba(6, 9, 43, 0.95);
-  --popover-foreground: var(--white);
+  --grid-container: 130rem;
+  --grid-gutter: 3.2rem;
 
-  /* Sidebar Colors */
-  --sidebar: var(--background);
-  --sidebar-foreground: var(--white);
-  --sidebar-primary: var(--green);
-  --sidebar-primary-foreground: var(--black);
-  --sidebar-accent: var(--pink);
-  --sidebar-accent-foreground: var(--white);
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: var(--green);
+  /* Layers (z-index) */
+  --layer-base: 10;
+  --layer-menu: 20;
+  --layer-overlay: 30;
+  --layer-modal: 40;
+  --layer-always-on-top: 50;
 
-  /* Chart Colors */
-  --chart-1: var(--green);
-  --chart-2: var(--pink);
-  --chart-3: var(--orange);
-  --chart-4: var(--green);
-  --chart-5: var(--gray-1);
+  /* Font Weights */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-bold: 600;
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-}
-
-@layer utilities {
-  .bg-gradient-pink {
-    background: var(--gradient-pink);
-  }
-  .footer-polygon {
-    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+  body {
+    @apply bg-main-bg text-white;
   }
 }

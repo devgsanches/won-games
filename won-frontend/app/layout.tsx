@@ -1,22 +1,27 @@
 import type { Metadata } from 'next'
-import { Poppins, Space_Grotesk } from 'next/font/google'
+import { Inter, Fira_Sans, Playwrite_RO } from 'next/font/google'
 import './globals.css'
 
-const poppins = Poppins({
-  variable: '--font-poppins',
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin']
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter'
 })
 
-const spaceGrotesk = Space_Grotesk({
+const firaSans = Fira_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-space-grotesk'
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-fira-sans'
+})
+
+const playwriteRomania = Playwrite_RO({
+  weight: ['400'],
+  variable: '--font-playwrite-ro'
 })
 
 export const metadata: Metadata = {
-  title: 'Name',
-  description: 'Description'
+  title: 'Jet Society',
+  description:
+    'Jet Society® é um clube seleto de proprietários de jatos, combinando gestão completa, eficiência operacional e benefícios sob medida.'
 }
 
 export default function RootLayout({
@@ -25,10 +30,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR">
-      <body
-        className={`${poppins.variable} ${spaceGrotesk.variable} antialiased min-h-screen font-sans flex flex-col overflow-x-hidden`}
-      >
+    <html
+      lang="pt-BR"
+      className={`${inter.variable} ${firaSans.variable} ${playwriteRomania.variable}`}
+    >
+      <body className="antialiased min-h-screen flex flex-col overflow-x-hidden">
         <main className="flex-1">{children}</main>
       </body>
     </html>

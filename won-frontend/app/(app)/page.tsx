@@ -1,8 +1,10 @@
+import { Logo } from './_components/Logo'
+
 const HomePage = () => {
   return (
-    <div>
-      <h1>HomePage</h1>
-    </div>
+    <>
+        <Logo home />
+    </>
   )
 }
 
