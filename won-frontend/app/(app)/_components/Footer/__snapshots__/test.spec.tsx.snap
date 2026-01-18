@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<Footer /> > should render the heading 1`] = `
+<h1
+  class="text-4xl"
+>
+  Footer
+</h1>
+`;

@@ -1,10 +1,10 @@
-import { Logo } from './_components/Logo'
+import { Navbar } from './_components/Navbar'
 
 const HomePage = () => {
   return (
-    <>
-        <Logo home />
-    </>
+    <div className="flex flex-col items-center gap-10">
+      <Navbar />
+    </div>
   )
 }
 

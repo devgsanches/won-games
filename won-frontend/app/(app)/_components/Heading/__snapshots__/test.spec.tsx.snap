@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<Heading /> > should render the heading with horizontal primary color decoration and white text color 1`] = `
+<div
+  class="flex flex-col gap-2.75"
+>
+  <h2
+    class="text-white text-large font-semibold"
+  >
+    Heading
+  </h2>
+  <div
+    class="bg-primary w-12.25 h-1.5"
+  />
+</div>
+`;
+
+exports[`<Heading /> > should render the heading with vertical secondary color decoration and white text color 1`] = `
+<div
+  class="flex items-center gap-2.75"
+>
+  <div
+    class="w-1.75 h-7.75 bg-secondary"
+  />
+  <h2
+    class="text-white text-large font-semibold"
+  >
+    Heading
+  </h2>
+</div>
+`;

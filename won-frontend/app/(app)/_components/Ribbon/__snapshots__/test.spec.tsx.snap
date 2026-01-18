@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<Ribbon /> > should render the Ribbon 1`] = `
+<div
+  class=" h-9.5 text-sm font-semibold bg-ribbon-primary"
+>
+  New Release
+</div>
+`;
+
+exports[`<Ribbon /> > should render the Ribbon with default variant 1`] = `
+<div
+  class=" h-9.5 text-sm font-semibold bg-ribbon-primary"
+>
+  New Release
+</div>
+`;
+
+exports[`<Ribbon /> > should render the Ribbon with large variant 1`] = `
+<div
+  class=" h-9.5 text-sm font-semibold bg-ribbon-primary"
+>
+  New Release
+</div>
+`;

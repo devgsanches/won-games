@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/nextjs-vite'
+import { Poppins } from 'next/font/google'
 import '../app/globals.css'
 import React from 'react'
 
@@ -22,7 +23,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div className="min-h-screen bg-sidebar text-sidebar-foreground">
+      <div className={`min-h-screen bg-dark-storybook w-full`}>
         <Story />
       </div>
     )

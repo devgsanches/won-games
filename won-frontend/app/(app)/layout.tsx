@@ -1,3 +1,3 @@
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
+  return <div className="font-family-poppins">{children}</div>
 }

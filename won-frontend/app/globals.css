@@ -11,26 +11,44 @@
   --color-black: #030517;
   --color-light-gray: #eaeaea;
   --color-gray: #8f8f8f;
+  --color-light-gray: #5f5f5f;
+  --color-xlight-gray: #bbbbbb;
+  --color-discount: #C7C7C7;
   --color-dark-gray: #2e2f42;
+  --color-dark-storybook: #333333;
+  --color-ribbon-primary: #3cd3c1;
+  --color-ribbon-secondary: #ff5f5f;
+
+  /* Backgrounds (gradientes) */
+  --background-gradient: linear-gradient(
+    178.59deg,
+    #ff5f5f -14.51%,
+    #f062c0 102.86%,
+    #f23131 102.86%
+  );
+  --background-gradient-hover:
+    linear-gradient(
+      178.59deg,
+      #ff5f5f -14.51%,
+      #f062c0 102.86%,
+      #f23131 102.86%
+    ),
+    linear-gradient(180deg, #e35565 0%, #d958a6 100%);
 
   /* Para usar, basta utilizar font-family-inter (font-family + nome da variável) */
 
   /* Typography - usa as variáveis injetadas pelo next/font */
-  --font-family-inter:
-    var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+  --font-family-poppins:
+    var(--font-poppins), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  --font-family-fira: var(--font-fira-sans), sans-serif;
-  --font-family-playwrite-ro: var(--font-playwrite-ro), sans-serif;
 
   /* Para usar, basta utilizar text-xsmall (text + nome da variável) */
 
   /* Font Sizes */
-  --text-xsmall: 1.2rem;
-  --text-small: 1.4rem;
-  --text-medium: 1.6rem;
-  --text-large: 1.8rem;
-  --text-xlarge: 2rem;
-  --text-xxlarge: 2.8rem;
+  --text-large: 16px;
+  --text-xlarge: 20px;
+  --text-xxlarge: 26px;
+  --text-xxxlarge: 28px;
 
   /* Para utilizar, basta utilizar gap-large (gap + nome da variável) */
   /* Spacings */
@@ -64,6 +82,102 @@
 
 @layer base {
   body {
-    @apply bg-main-bg text-white;
+    @apply bg-main-bg font-family-poppins text-white;
   }
 }
+
+@layer utilities {
+  .bg-gradient {
+    position: relative;
+    background-image: var(--background-gradient);
+    overflow: hidden;
+  }
+
+  .bg-gradient::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.12) 0%,
+      rgba(0, 0, 0, 0.16) 100%
+    );
+    opacity: 0;
+    transition: opacity 180ms ease;
+    pointer-events: none;
+  }
+
+  .bg-gradient:hover::after {
+    opacity: 1;
+  }
+
+  .bg-gradient:active::after {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.22);
+  }
+
+  @keyframes confetti {
+    0% {
+      transform: translate(0, 0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--x), var(--y)) scale(0.5);
+      opacity: 0;
+    }
+  }
+
+  .confetti {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background-color: #f231a5; /* mesma cor do coração */
+    border-radius: 9999px;
+    animation: confetti 0.6s ease-out forwards;
+  }
+
+  /* direções diferentes */
+  .confetti-0 {
+    --x: -12px;
+    --y: -16px;
+  }
+  .confetti-1 {
+    --x: 0px;
+    --y: -20px;
+  }
+  .confetti-2 {
+    --x: 12px;
+    --y: -16px;
+  }
+  .confetti-3 {
+    --x: -14px;
+    --y: 10px;
+  }
+  .confetti-4 {
+    --x: 14px;
+    --y: 10px;
+  }
+  .confetti-5 {
+    --x: 0px;
+    --y: 16px;
+  }
+}
+
+@keyframes cart-pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-cart-pop {
+  animation: cart-pop 0.4s ease-out;
+}
+

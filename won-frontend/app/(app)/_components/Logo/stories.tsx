@@ -9,4 +9,8 @@ export default {
     layout: 'fullscreen'
   }
 } as Meta
-export const Default: StoryObj = {}
+export const Default: StoryObj = {
+  args: {
+    color: 'white'
+  }
+}
