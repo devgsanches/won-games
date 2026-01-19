@@ -8,7 +8,7 @@ interface MenuFullProps {
 
 export function MenuFull({ username }: MenuFullProps) {
   return (
-    <SheetContent className="w-full bg-white text-black flex items-center justify-center">
+    <SheetContent className="w-full h-full bg-white text-black flex items-center justify-center">
       <nav
         className={`flex flex-col gap-8 ${!username ? 'justify-between' : 'justify-center'} h-full w-full`}
       >

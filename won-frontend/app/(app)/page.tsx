@@ -3,65 +3,61 @@ import { Navbar } from './_components/Navbar'
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col items-center gap-10 w-full min-h-screen">
+    <div className="flex flex-col gap-10 w-full min-h-screen">
+    <div className="w-full">
       <Navbar />
-      <div className="w-full">
+    </div>
+      <div className="w-full pl-2">
       <GameCardSlider items={[
           {
             imgUrl: '/bully_cover.jpg',
             name: 'The Witcher 3',
             developer: 'Capcom',
-            price: 219,
+
             size: 'small',
           },
           {
             imgUrl: '/bully_cover.jpg',
             name: 'Resident Evil 3',
             developer: 'Capcom',
-            price: 219,
+
             size: 'small',
           },
           {
             imgUrl: '/bully_cover.jpg',
             name: 'Resident Evil 3',
             developer: 'Capcom',
-            price: 219,
             size: 'small',
           },
           {
             imgUrl: '/bully_cover.jpg',
             name: 'Resident Evil 3',
             developer: 'Capcom',
-            price: 219,
             size: 'small',
           },
           {
             imgUrl: '/bully_cover.jpg',
             name: 'Resident Evil 3',
             developer: 'Capcom',
-            price: 219,
             size: 'small',
           },
           {
             imgUrl: '/bully_cover.jpg',
             name: 'Resident Evil 3',
             developer: 'Capcom',
-            price: 219,
             size: 'small',
           },
           {
             imgUrl: '/bully_cover.jpg',
             name: 'Resident Evil 3',
             developer: 'Capcom',
-            price: 219,
             size: 'small',
           },
           {
             imgUrl: '/bully_cover.jpg',
             name: 'Resident Evil 3',
             developer: 'Capcom',
-            price: 219,
-            size: 'small',
+            size: 'small' ,
           }
         ]} />
       </div>
