@@ -23,7 +23,7 @@ export function Navbar({ user = 'Guilherme' }) {
   return (
     <>
       {/* TABLET AND DESKTOP NAVBAR */}
-      <nav className="hidden md:flex  items-center justify-between w-full">
+      <nav className="hidden md:flex  items-center justify-between w-full p-10 px-20">
         <div className="flex items-center gap-9.5">
           <Logo color="white" size="xsmall" />
           <div className="flex items-center gap-8">
@@ -81,7 +81,7 @@ export function Navbar({ user = 'Guilherme' }) {
       </nav>
 
       {/* MOBILE NAVBAR */}
-      <nav className="md:hidden flex items-center justify-between w-full relative pt-6">
+      <nav className="md:hidden flex items-center justify-between w-full relative pt-8 px-6">
         <Sheet>
           <SheetTrigger asChild>
             <MenuIcon strokeWidth={1.5} size={23} aria-label="Open menu" />

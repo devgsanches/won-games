@@ -4,9 +4,7 @@ import { Navbar } from './_components/Navbar'
 const HomePage = () => {
   return (
     <div className="flex flex-col gap-10 w-full min-h-screen">
-    <div className="w-full">
       <Navbar />
-    </div>
       <div className="w-full pl-2">
       <GameCardSlider items={[
           {

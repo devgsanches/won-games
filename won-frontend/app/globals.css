@@ -82,8 +82,23 @@
 }
 
 @layer base {
+  html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE e Edge */
+  }
+
+  html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari e Opera */
+  }
+
   body {
     @apply bg-main-bg font-family-poppins text-white;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE e Edge */
+  }
+
+  body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari e Opera */
   }
 }
 
