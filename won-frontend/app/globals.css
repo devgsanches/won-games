@@ -18,6 +18,7 @@
   --color-dark-storybook: #333333;
   --color-ribbon-primary: #3cd3c1;
   --color-ribbon-secondary: #ff5f5f;
+  --color-decorate-white: #d3d3d3;
 
   /* Backgrounds (gradientes) */
   --background-gradient: linear-gradient(
@@ -181,3 +182,10 @@
   animation: cart-pop 0.4s ease-out;
 }
 
+/* Swiper overflow fix para mobile/tablet */
+@media (max-width: 1023px) {
+  .swiper-overflow-visible .swiper,
+  .swiper-overflow-visible .swiper-wrapper {
+    overflow: visible !important;
+  }
+}
