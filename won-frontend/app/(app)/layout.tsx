@@ -12,6 +12,3 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     </div>
   )
 }
-
-// Test from won-frontend
-// test
