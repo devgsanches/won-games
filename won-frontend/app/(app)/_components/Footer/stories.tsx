@@ -12,7 +12,6 @@ export default {
     (Story) => (
       <div
         style={{
-          backgroundColor: 'white',
           minHeight: '100vh',
           width: '100%',
           display: 'flex',
@@ -26,4 +25,5 @@ export default {
     )
   ]
 } as Meta
+
 export const Default: StoryObj = {}

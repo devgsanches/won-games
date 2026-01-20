@@ -9,12 +9,13 @@ export default {
     layout: 'fullscreen'
   }
 } as Meta
+
 export const Default: StoryObj = {
   decorators: [
     (Story) => (
-      <div className="bg-main-bg h-screen overflow-hidden">
+      <div className="h-screen overflow-hidden">
         <div className="lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2">
-         <Story />
+          <Story />
         </div>
       </div>
     )

@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import * as React from "react";
+import * as React from 'react'
 
 import {
   Carousel,
@@ -8,49 +8,49 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
-import { cn } from "@/lib/utils";
-import { Banner } from "../Banner";
+  type CarouselApi
+} from '@/components/ui/carousel'
+import { cn } from '@/lib/utils'
+import { Banner } from '../Banner'
 
-export function BannerSlider({
-  items,
-}: {
-  items: any[]
-}) {
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
-  const [isDesktop, setIsDesktop] = React.useState(false);
+export function BannerSlider({ items }: { items: any[] }) {
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+  const [isDesktop, setIsDesktop] = React.useState(false)
 
   React.useEffect(() => {
     const checkScreenSize = () => {
-      setIsDesktop(window.innerWidth >= 768); // md breakpoint
-    };
+      setIsDesktop(window.innerWidth >= 768) // md breakpoint
+    }
 
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
 
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
 
   React.useEffect(() => {
     if (!api) {
-      return;
+      return
     }
 
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
 
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
 
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <div className="mx-auto w-full max-w-7xl flex items-center h-auto justify-center relative md:px-4">
-        <Carousel setApi={setApi} className="w-full h-full" orientation={isDesktop ? "vertical" : "horizontal"}>
+        <Carousel
+          setApi={setApi}
+          className="w-full h-full"
+          orientation={isDesktop ? 'vertical' : 'horizontal'}
+        >
           <CarouselContent className="h-full md:h-146 ml-0">
             {items.map((item, i) => (
               <CarouselItem key={i} className="relative basis-full pl-0">
@@ -67,13 +67,10 @@ export function BannerSlider({
             <button
               key={index}
               onClick={() => api?.scrollTo(index)}
-              className={cn(
-                "h-2.5 w-2.5 rounded-full transition-colors",
-                {
-                  "border-primary bg-primary": current === index + 1,
-                  " bg-decorate-white": current !== index + 1,
-                }
-              )}
+              className={cn('h-2.5 w-2.5 rounded-full transition-colors', {
+                'border-primary bg-primary': current === index + 1,
+                ' bg-decorate-white': current !== index + 1
+              })}
               aria-label={`Ir para slide ${index + 1}`}
             />
           ))}
@@ -84,18 +81,15 @@ export function BannerSlider({
             <button
               key={index}
               onClick={() => api?.scrollTo(index)}
-              className={cn(
-                "h-2.5 w-2.5 rounded-full transition-colors",
-                {
-                  "border-primary bg-primary": current === index + 1,
-                  " bg-decorate-white": current !== index + 1,
-                }
-              )}
+              className={cn('h-2.5 w-2.5 rounded-full transition-colors', {
+                'border-primary bg-primary': current === index + 1,
+                ' bg-decorate-white': current !== index + 1
+              })}
               aria-label={`Ir para slide ${index + 1}`}
             />
           ))}
         </div>
       </div>
     </div>
-  );
+  )
 }

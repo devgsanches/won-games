@@ -18,7 +18,7 @@ export default {
   },
   decorators: [
     (Story) => (
-      <div className="bg-main-bg h-screen flex items-center justify-center">
+      <div className="h-screen flex items-center justify-center">
         <Story />
       </div>
     )
@@ -30,4 +30,5 @@ export default {
     textButton: 'Comprar agora'
   }
 } as Meta
+
 export const Default: StoryObj = {}

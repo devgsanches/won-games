@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-  import { GameCardSlider } from '.'
+import { GameCardSlider } from '.'
 
 describe('<Slider />', () => {
   const items = [
@@ -13,7 +13,7 @@ describe('<Slider />', () => {
         oldPrice: 'R$ 245,00',
         discountPercentage: 10
       },
-      size: 'small',
+      size: 'small'
     },
     {
       name: 'The Witcher 3',
@@ -21,12 +21,10 @@ describe('<Slider />', () => {
       developer: 'CD Projekt Red',
       price: 299,
       promotion: null,
-      size: 'small',
-    },
+      size: 'small'
+    }
   ]
   it('should render the heading', () => {
     const { container } = render(<GameCardSlider items={items} />)
-
-
   })
 })

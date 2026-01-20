@@ -8,16 +8,15 @@ export default {
   parameters: {
     layout: 'fullscreen'
   }
-  // decorators: [
-  //   (Story) => (
-  //     <div className="font-family-inter">
-  //       {/* Tudo aqui dentro usa Inter, não Poppins */}
-  //       <Story />
-  //     </div>
-  //   )
-  // ]
 } as Meta
 export const Default: StoryObj = {
+  decorators: [
+    (Story) => (
+      <div className="p-10 px-20">
+        <Story />
+      </div>
+    )
+  ],
   args: {
     user: 'Guilherme'
   }

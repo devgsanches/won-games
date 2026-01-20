@@ -13,9 +13,8 @@
   --color-gray: #8f8f8f;
   --color-light-gray: #5f5f5f;
   --color-xlight-gray: #bbbbbb;
-  --color-discount: #C7C7C7;
+  --color-discount: #c7c7c7;
   --color-dark-gray: #2e2f42;
-  --color-dark-storybook: #333333;
   --color-ribbon-primary: #3cd3c1;
   --color-ribbon-secondary: #ff5f5f;
   --color-decorate-white: #d3d3d3;
@@ -196,5 +195,3 @@
 .animate-cart-pop {
   animation: cart-pop 0.4s ease-out;
 }
-
-

@@ -23,7 +23,7 @@ export function Navbar({ user = 'Guilherme' }) {
   return (
     <>
       {/* TABLET AND DESKTOP NAVBAR */}
-      <nav className="hidden md:flex  items-center justify-between w-full p-10 px-20">
+      <nav className="hidden md:flex  items-center justify-between w-full">
         <div className="flex items-center gap-9.5">
           <Logo color="white" size="xsmall" />
           <div className="flex items-center gap-8">
@@ -68,20 +68,30 @@ export function Navbar({ user = 'Guilherme' }) {
           </div>
         </div>
         <div className="flex items-center gap-8">
-          <SearchIcon strokeWidth={1.5} size={24} />
-          <ShoppingCartIcon strokeWidth={1.5} size={24} />
+          <SearchIcon
+            strokeWidth={1.5}
+            size={24}
+            className="hover:text-primary transition-colors duration-300 ease-out cursor-pointer"
+          />
+          <ShoppingCartIcon
+            strokeWidth={1.5}
+            size={24}
+            className="hover:text-primary transition-colors duration-300 ease-out cursor-pointer"
+          />
           {user && (
-            <div className="flex items-center gap-2.5 cursor-pointer">
-              <CircleUserIcon />
-              <span>{user}</span>
-              <ChevronDownIcon color="gray" />
+            <div className="group flex items-center gap-2.5 cursor-pointer">
+              <CircleUserIcon className="group-hover:text-primary transition-colors duration-300 ease-out" />
+              <span className="group-hover:text-primary transition-colors duration-300 ease-out">
+                {user}
+              </span>
+              <ChevronDownIcon className="text-gray group-hover:text-primary transition-colors duration-300 ease-out" />
             </div>
           )}
         </div>
       </nav>
 
       {/* MOBILE NAVBAR */}
-      <nav className="md:hidden flex items-center justify-between w-full relative pt-8 px-6">
+      <nav className="md:hidden flex items-center justify-between w-full relative">
         <Sheet>
           <SheetTrigger asChild>
             <MenuIcon strokeWidth={1.5} size={23} aria-label="Open menu" />

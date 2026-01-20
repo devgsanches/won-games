@@ -9,10 +9,11 @@ export default {
     layout: 'fullscreen'
   }
 } as Meta
+
 export const Default: StoryObj = {
   decorators: [
     (Story) => (
-      <div className="w-64 h-52 bg-white relative">
+      <div className="w-64 h-52 relative bg-main-bg">
         <Story />
       </div>
     )

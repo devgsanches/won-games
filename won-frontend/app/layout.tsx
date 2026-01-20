@@ -21,6 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${poppins.variable}`}>
+      <head>
+        <link rel="icon" href="/logo-mobile.svg" />
+      </head>
       <body className="antialiased min-h-screen overflow-x-hidden">
         <main className="flex-1">{children} </main>
       </body>

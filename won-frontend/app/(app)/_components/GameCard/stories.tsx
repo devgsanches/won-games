@@ -9,19 +9,20 @@ export default {
     layout: 'fullscreen'
   }
 } as Meta
+
 export const Default: StoryObj = {
   decorators: [
     (Story) => (
-      <div className="bg-xlight-gray h-screen flex justify-center items-center">
+      <div className="h-screen flex justify-center items-center">
         <Story />
       </div>
     )
   ],
   args: {
-   name: 'Resident Evil 3',
-   imgUrl: '/cs.jpg',
-   developer: 'Capcom',
-   price: 219,
+    name: 'Resident Evil 3',
+    imgUrl: '/cs.jpg',
+    developer: 'Capcom',
+    price: 219
   },
   argTypes: {
     promotion: {
@@ -35,7 +36,7 @@ export const Default: StoryObj = {
 export const Promotional: StoryObj = {
   decorators: [
     (Story) => (
-      <div className="bg-xlight-gray h-screen flex justify-center items-center">
+      <div className="h-screen flex justify-center items-center">
         <Story />
       </div>
     )
@@ -49,7 +50,7 @@ export const Promotional: StoryObj = {
       oldPrice: 'R$ 245,00',
       discountPercentage: 10
     },
-    size: 'small',
+    size: 'small'
   },
   argTypes: {
     size: {
@@ -63,7 +64,7 @@ export const Promotional: StoryObj = {
 export const Free: StoryObj = {
   decorators: [
     (Story) => (
-      <div className="bg-xlight-gray h-screen flex justify-center items-center">
+      <div className="h-screen flex justify-center items-center">
         <Story />
       </div>
     )
@@ -72,7 +73,7 @@ export const Free: StoryObj = {
     name: 'Resident Evil 3',
     imgUrl: '/resident-evil.png',
     developer: 'Capcom',
-    size: 'small',
+    size: 'small'
   },
   argTypes: {
     size: {

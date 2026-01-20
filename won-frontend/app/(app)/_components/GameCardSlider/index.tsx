@@ -1,45 +1,41 @@
-"use client";
+'use client'
 
-import * as React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import type { Swiper as SwiperType } from "swiper";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { GameCard } from "../GameCard";
+import * as React from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation } from 'swiper/modules'
+import type { Swiper as SwiperType } from 'swiper'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { GameCard } from '../GameCard'
 
-import "swiper/css";
-import "swiper/css/navigation";
+import 'swiper/css'
+import 'swiper/css/navigation'
 
-export function GameCardSlider({
-  items,
-}: {
-  items: any[]
-}) {
-  const [swiper, setSwiper] = React.useState<SwiperType | null>(null);
-  const [isBeginning, setIsBeginning] = React.useState(true);
-  const [isEnd, setIsEnd] = React.useState(false);
+export function GameCardSlider({ items }: { items: any[] }) {
+  const [swiper, setSwiper] = React.useState<SwiperType | null>(null)
+  const [isBeginning, setIsBeginning] = React.useState(true)
+  const [isEnd, setIsEnd] = React.useState(false)
 
   React.useEffect(() => {
     if (swiper) {
       const updateNavigation = () => {
-        setIsBeginning(swiper.isBeginning);
-        setIsEnd(swiper.isEnd);
-      };
+        setIsBeginning(swiper.isBeginning)
+        setIsEnd(swiper.isEnd)
+      }
 
-      updateNavigation();
-      swiper.on("slideChange", updateNavigation);
-      swiper.on("reachBeginning", updateNavigation);
-      swiper.on("reachEnd", updateNavigation);
+      updateNavigation()
+      swiper.on('slideChange', updateNavigation)
+      swiper.on('reachBeginning', updateNavigation)
+      swiper.on('reachEnd', updateNavigation)
 
       return () => {
-        swiper.off("slideChange", updateNavigation);
-        swiper.off("reachBeginning", updateNavigation);
-        swiper.off("reachEnd", updateNavigation);
-      };
+        swiper.off('slideChange', updateNavigation)
+        swiper.off('reachBeginning', updateNavigation)
+        swiper.off('reachEnd', updateNavigation)
+      }
     }
-  }, [swiper]);
+  }, [swiper])
 
   return (
     <div className="mx-auto w-full px-4 md:px-6 lg:px-0 max-w-[1256px]">
@@ -53,16 +49,16 @@ export function GameCardSlider({
             breakpoints={{
               468: {
                 slidesPerView: 2,
-                spaceBetween: 8,
+                spaceBetween: 8
               },
               768: {
                 slidesPerView: 2.2,
-                spaceBetween: 16,
+                spaceBetween: 16
               },
               1024: {
                 slidesPerView: 4,
-                spaceBetween: 16,
-              },
+                spaceBetween: 16
+              }
             }}
           >
             {items.map((item, i) => (
@@ -76,8 +72,8 @@ export function GameCardSlider({
           variant="ghost"
           size="icon"
           className={cn(
-            "absolute left-2 md:left-4 lg:-left-12 top-1/2 -translate-y-1/2 z-50 rounded-full size-8 bg-background/80 backdrop-blur-sm",
-            isBeginning && "opacity-50 cursor-not-allowed"
+            'absolute left-2 md:left-4 lg:-left-12 top-1/2 -translate-y-1/2 z-50 rounded-full size-8 bg-background/80 backdrop-blur-sm',
+            isBeginning && 'opacity-50 cursor-not-allowed'
           )}
           onClick={() => swiper?.slidePrev()}
           disabled={isBeginning}
@@ -89,8 +85,8 @@ export function GameCardSlider({
           variant="ghost"
           size="icon"
           className={cn(
-            "absolute right-2 md:right-4 lg:-right-12 top-1/2 -translate-y-1/2 z-50 rounded-full size-8 bg-background/80 backdrop-blur-sm",
-            isEnd && "opacity-50 cursor-not-allowed"
+            'absolute right-2 md:right-4 lg:-right-12 top-1/2 -translate-y-1/2 z-50 rounded-full size-8 bg-background/80 backdrop-blur-sm',
+            isEnd && 'opacity-50 cursor-not-allowed'
           )}
           onClick={() => swiper?.slideNext()}
           disabled={isEnd}
@@ -100,5 +96,5 @@ export function GameCardSlider({
         </Button>
       </div>
     </div>
-  );
+  )
 }

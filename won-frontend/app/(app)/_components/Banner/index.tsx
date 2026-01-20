@@ -38,7 +38,7 @@ export function Banner({ imageUrl, title, subtitle, gameName }: BannerProps) {
       </div>
 
       <div
-        className="hidden md:flex h-146 w-260.5 bg-cover bg-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded"
+        className="hidden md:flex h-146 max-w-260.5 w-full bg-cover bg-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded"
         style={{
           backgroundImage: `url('${imageUrl}')`
         }}

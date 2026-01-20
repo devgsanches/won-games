@@ -20,7 +20,7 @@ export const Default: StoryObj = {
   },
   decorators: [
     (Story) => (
-      <div className="bg-main-bg h-screen">
+      <div className="h-screen">
         <Story />
       </div>
     )

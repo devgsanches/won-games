@@ -43,7 +43,6 @@ export const asLink: StoryObj = {
     (Story) => (
       <div
         style={{
-          backgroundColor: '#ffffff',
           minHeight: '100vh',
           width: '100%'
         }}

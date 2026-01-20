@@ -11,6 +11,13 @@ const preview: Preview = {
         date: /Date$/i
       }
     },
+    backgrounds: {
+      options: {
+        light: { name: 'Light', value: '#fafafa' },
+        dark: { name: 'Dark', value: '#333333' },
+        'main-bg': { name: 'Main bg', value: '#06092b' }
+      }
+    },
     a11y: {
       test: 'todo'
     },
@@ -21,9 +28,12 @@ const preview: Preview = {
       }
     }
   },
+  initialGlobals: {
+    backgrounds: { value: 'light' }
+  },
   decorators: [
     (Story) => (
-      <div className={`min-h-screen bg-dark-storybook w-full`}>
+      <div className={`min-h-screen w-full`}>
         <Story />
       </div>
     )
