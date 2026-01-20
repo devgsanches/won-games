@@ -1,14 +1,4 @@
-# Detecta arquivos staged de won-frontend
-if git diff --cached --name-only --diff-filter=ACM | grep -q "^won-frontend/"; then
-  echo "🔍 Executando lint-staged para won-frontend..."
-  cd won-frontend && pnpm exec lint-staged
-  exit_code=$?
-  if [ $exit_code -ne 0 ]; then
-    exit $exit_code
-  fi
-fi
-
-# Detecta arquivos staged de cms
-if git diff --cached --name-only --diff-filter=ACM | grep -q "^cms/"; then
-  echo "ℹ️  Arquivos do cms detectados (sem lint-staged configurado)"
-fi
+# Executa lint-staged apenas se houver arquivos de won-frontend
+cd "$(git rev-parse --show-toplevel)" && \
+git diff --cached --name-only --diff-filter=ACM | grep -q "^won-frontend/" && \
+(cd won-frontend && pnpm exec lint-staged)
