@@ -11,7 +11,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: 'Won Games',
   description:
-    'Won Games® é uma plataforma de jogos online, com uma ampla variedade de jogos para todos os gostos.'
+    'Won Games® is an online gaming platform, with a wide variety of games for all tastes.'
 }
 
 export default function RootLayout({
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" className={`${poppins.variable}`}>
+    <html lang="en" className={`${poppins.variable}`}>
       <head>
         <link rel="icon" href="/logo-mobile.svg" />
       </head>

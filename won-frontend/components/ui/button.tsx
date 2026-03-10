@@ -18,13 +18,14 @@ const buttonVariants = cva(
           'bg-secondary text-secondary-foreground hover:bg-gradient-hover',
         ghost:
           'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
-        link: 'text-center text-primary font-medium underline underline-offset-4 decoration-2 hover:text-primary/80 cursor-pointer'
+        link: 'text-center text-primary font-medium underline underline-offset-4 decoration-2 hover:text-primary/80 cursor-pointer',
+        wishList: 'text-center text-primary font-medium cursor-pointer'
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
-        sm: 'px-7.5 py-1.75 rounded text-xs',
+        sm: 'px-6.5 py-1.75 rounded text-xs',
         md: 'px-3 py-2.5 rounded text-sm',
-        lg: 'px-13.25 py-3.25 rounded text-base',
+        lg: 'h-12.5 px-9.5 rounded text-base',
         icon: 'size-9',
         'icon-sm': 'size-8',
         'icon-lg': 'size-10'

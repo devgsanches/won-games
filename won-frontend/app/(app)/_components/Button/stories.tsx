@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { Button } from '.'
-import { ShoppingCart as ShoppingCartIcon } from 'lucide-react'
+import { Heart, ShoppingCart as ShoppingCartIcon } from 'lucide-react'
 
 export default {
   title: 'app/(app)/_components/Button',
@@ -38,6 +38,26 @@ export const asLink: StoryObj = {
   args: {
     variant: 'link',
     children: 'Crie sua conta'
+  },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          minHeight: '100vh',
+          width: '100%'
+        }}
+      >
+        <Story />
+      </div>
+    )
+  ]
+}
+
+export const asWishList: StoryObj = {
+  args: {
+    variant: 'wishList',
+    children: 'Lista de desejos',
+    icon: <Heart strokeWidth={2} />
   },
   decorators: [
     (Story) => (

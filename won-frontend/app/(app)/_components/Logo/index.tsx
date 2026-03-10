@@ -4,6 +4,7 @@ export type LogoProps = {
   color?: 'white' | 'black'
   size?: 'xsmall' | 'small' | 'large'
   mobile?: boolean
+  id?: string
 }
 
 const colorMap = {
@@ -20,7 +21,8 @@ const sizeMap = {
 export function Logo({
   color = 'black',
   size = 'xsmall',
-  mobile = false
+  mobile = false,
+  id = 'logo'
 }: LogoProps) {
   if (mobile) {
     return (
@@ -37,7 +39,7 @@ export function Logo({
     <div className={`${colorMap[color]} ${sizeMap[size]}`}>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 158 48">
         <path
-          fill="url(#a)"
+          fill={`url(#${id})`}
           d="M.055 15.125.019 35.77c-.008 4.796 5.336 7.662 9.327 5.003l20.596-13.722L50.49 40.844c3.982 2.673 9.335-.176 9.344-4.972l.034-19.997c.014-7.881-7.549-13.565-15.116-11.36l-.873.254a50.87 50.87 0 0 1-29.358-.271C7.351 2.264.068 7.614.055 15.125"
         />
         <path
@@ -96,7 +98,7 @@ export function Logo({
         />
         <defs>
           <linearGradient
-            id="a"
+            id={id}
             x1="29.159"
             x2="30.155"
             y1="-7.5"

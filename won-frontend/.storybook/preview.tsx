@@ -1,5 +1,4 @@
 import type { Preview } from '@storybook/nextjs-vite'
-import { Poppins } from 'next/font/google'
 import '../app/globals.css'
 import React from 'react'
 

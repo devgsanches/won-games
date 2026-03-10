@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Button } from '../Button'
 
-interface HighlightProps {
+export interface HighlightProps {
   title: string
   subtitle: string
   textDirection: 'left' | 'right'
@@ -9,13 +9,13 @@ interface HighlightProps {
 }
 
 export function Highlight({
-  title = 'A escola nunca foi tão perigosa',
-  subtitle = 'Domine os corredores, enfrente os valentões e faça seu nome',
-  textDirection = 'right',
-  textButton = 'Comprar agora'
+  title,
+  subtitle,
+  textDirection,
+  textButton
 }: HighlightProps) {
   return (
-    <div className="relative h-57.5 w-full md:w-260.5 overflow-hidden">
+    <div className="relative h-57.5 w-full md:w-full overflow-hidden">
       <div
         className={`absolute h-full w-full
           bg-[url(/bully_cover.jpg)]
@@ -27,7 +27,7 @@ export function Highlight({
         <div className="absolute inset-0 bg-black/80" />
 
         <div
-          className={`relative h-full w-full ${textDirection === 'left' ? 'grid grid-cols-[68%_32%]' : 'grid grid-cols-[32%_68%]'}  ${textDirection === 'left' ? 'md:grid-cols-[80%_20%]' : 'md:grid-cols-[20%_80%]'}`}
+          className={`relative h-full w-full ${textDirection === 'left' ? 'grid grid-cols-[62%_38%]' : 'grid grid-cols-[38%_62%]'}  ${textDirection === 'left' ? 'md:grid-cols-[80%_20%]' : 'md:grid-cols-[20%_80%]'}`}
         >
           {textDirection === 'left' ? (
             <div className="w-full flex flex-col gap-4 md:gap-3 pl-2.75 md:pl-12 md:pb-12 md:justify-end">
@@ -43,27 +43,27 @@ export function Highlight({
               </div>
             </div>
           ) : (
-            <div className="flex items-end w-full h-full relative">
-              <div className="md:flex absolute md:h-full md:w-full left-0 md:left-10">
+            <div className="flex items-end w-full h-full md:relative">
+              <div className="md:flex md:absolute md:h-full md:w-full lg:left-10 w-full h-full flex items-end">
                 <Image
                   src="/bully.png"
                   alt="Avatar"
                   width={266}
                   height={310}
-                  className="w-40.5 h-40.5 md:h-full md:w-full object-cover"
+                  className="w-46.5 h-46.5 md:h-full md:w-full object-cover"
                 />
               </div>
             </div>
           )}
           {textDirection === 'left' ? (
-            <div className="flex items-end w-full h-full relative">
-              <div className="md:flex absolute md:h-full md:w-full right-0 md:right-10">
+            <div className="flex items-end w-full h-full md:relative">
+              <div className="md:flex md:absolute md:h-full md:w-full lg:right-10 w-full h-full flex items-end">
                 <Image
                   src="/bully.png"
                   alt="Avatar"
                   width={266}
                   height={310}
-                  className="w-40.5 h-40.5 md:h-full md:w-full object-cover"
+                  className="w-46.5 h-46.5 md:h-full md:w-full object-cover"
                 />
               </div>
             </div>

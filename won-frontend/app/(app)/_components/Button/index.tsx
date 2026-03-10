@@ -1,15 +1,19 @@
 import { Button as ButtonShadcn } from '@/components/ui/button'
 import Link from 'next/link'
 import { cloneElement } from 'react'
+import { HeartConfetti } from '../GameCard/components/heart-confetti'
 
 interface ButtonProps {
   size?: 'sm' | 'md' | 'lg'
   fullWidth?: boolean
   children: React.ReactNode
-  variant?: 'default' | 'link'
+  variant?: 'default' | 'link' | 'wishList'
   icon?: React.ReactElement<{ className?: string }>
   to?: string
   onClick?: () => void
+  isFavorited?: boolean
+  className?: string
+  type?: 'button' | 'submit' | 'reset'
 }
 
 const iconSizeMap = {
@@ -31,7 +35,10 @@ export function Button({
   variant = 'default',
   icon,
   onClick,
-  to
+  to,
+  className,
+  type = 'button',
+  isFavorited = false
 }: ButtonProps) {
   const iconSize = iconSizeMap[size]
 
@@ -39,20 +46,22 @@ export function Button({
 
   return (
     <ButtonShadcn
-      type={onClick ? 'button' : undefined}
+      type={type}
       variant={variant}
       size={size}
-      className={`${
+      className={` ${className} ${
         icon
-          ? `flex items-center gap-1.5
+          ? `flex items-center
         `
           : ''
-      } ${fullWidth ? 'w-full' : ''}`}
+      } ${fullWidth ? 'w-full' : ''} ${variant === 'wishList' ? 'gap-3' : 'gap-1.5'} `}
+      onClick={onClick}
     >
       {icon && (
-        <span className="flex items-center">
+        <span className="flex items-center relative">
+          {variant === 'wishList' && isFavorited && <HeartConfetti />}
           {cloneElement(icon, {
-            className: iconSize
+            className: `${iconSize} ${variant === 'wishList' ? `text-primary transition-all duration-300 ease-out ${isFavorited ? 'fill-primary scale-115' : 'fill-transparent scale-100'}` : ''}`
           })}
         </span>
       )}

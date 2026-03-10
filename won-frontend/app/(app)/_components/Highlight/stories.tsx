@@ -25,9 +25,9 @@ export default {
   ],
   args: {
     textDirection: 'right',
-    title: 'A escola nunca foi tão perigosa',
-    subtitle: 'Domine os corredores, enfrente os valentões e faça seu nome',
-    textButton: 'Comprar agora'
+    title: 'School has never been this dangerous',
+    subtitle: 'Master the hallways, face the bullies and make your name',
+    textButton: 'Buy now'
   }
 } as Meta
 

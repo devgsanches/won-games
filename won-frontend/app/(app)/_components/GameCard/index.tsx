@@ -1,49 +1,83 @@
-import { Heart, ShoppingCart } from 'lucide-react'
+'use client'
+
+import { Heart } from 'lucide-react'
 import { PriceBadge } from './components/price-badge'
 import { useState } from 'react'
 import { HeartConfetti } from './components/heart-confetti'
 import { Button } from '@/components/ui/button'
 import { Ribbon } from '../Ribbon'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
+import { useRouter } from 'next/navigation'
 
-interface GameCardProps {
+import { useCartStore } from '../../_store/cart'
+
+export interface GameCardProps {
+  id: string
   imgUrl: string
   name: string
+  slug: string
   developer: string
   price?: number
-  size?: 'small' | 'normal'
+  size?: 'small' | 'normal' | 'full'
   promotion?: {
     oldPrice: string
     discountPercentage: number
   }
+  wishlist?: boolean
+  cardNumber?: number
+  purchaseDate?: string
+  flag?: string
 }
 
 export function GameCard({
+  id,
   imgUrl,
   name,
+  slug,
   developer,
   price,
   size = 'normal',
-  promotion
+  promotion,
+  wishlist = false,
+  cardNumber,
+  purchaseDate,
+  flag
 }: GameCardProps) {
   const [isFavorited, setIsFavorited] = useState(false)
   const [isAddedToCart, setIsAddedToCart] = useState(false)
 
+  const { addNewItem } = useCartStore()
+
+  const router = useRouter()
+
   const cartAddedUrl = '/addedCart.svg'
 
+  function handleClick() {
+    router.push(`/game/${slug}`)
+  }
+
+  function addedToCart(item: GameCardProps) {
+    setIsAddedToCart(!isAddedToCart)
+
+    addNewItem(item)
+  }
+
   return (
-    <div className={`${size === 'small' ? 'w-73' : 'w-91.25'} relative`}>
+    <div
+      className={`${size === 'small' ? 'w-73' : size === 'normal' ? 'w-91.25' : 'w-full'} relative`}
+    >
       {promotion?.discountPercentage && (
         <Ribbon color="secondary" size="small">
           {promotion.discountPercentage}% OFF
         </Ribbon>
       )}
       <div
-        className={`${size === 'small' ? 'h-34.25' : 'h-37.75'} w-full bg-cover bg-center`}
+        className={`${size === 'small' ? 'h-34.25' : 'h-37.75'} w-full bg-cover bg-center cursor-pointer`}
         style={{ backgroundImage: `url(${imgUrl})` }}
-      ></div>
+        onClick={handleClick}
+      />
       <div
-        className={`grid grid-cols-[80%_20%] ${price && size === 'normal' ? 'h-22' : ''} ${price && size !== 'normal' ? 'h-24' : 'h-18'} bg-white p-4 pt-2.5 pb-2 max-w-full`}
+        className={`shadow-lg grid grid-cols-[80%_20%] ${price && size === 'normal' ? 'h-22' : ''} ${price && size !== 'normal' ? 'h-24' : 'h-18'} bg-white p-4 pt-2.5 pb-2 max-w-full`}
       >
         <div className="flex flex-col justify-between">
           <div>
@@ -74,6 +108,7 @@ export function GameCard({
       ease-out
       text-primary
       ${isFavorited ? 'scale-115 fill-primary animate-heart' : 'scale-100'}
+      ${wishlist ? 'fill-primary' : ''}
     `}
               onClick={() => setIsFavorited(!isFavorited)}
             />
@@ -84,7 +119,7 @@ export function GameCard({
               <PriceBadge price={price} />
               <Button
                 size="icon"
-                onClick={() => setIsAddedToCart(!isAddedToCart)}
+                onClick={() => addedToCart({ id, imgUrl, name, slug, developer, price })}
                 className={`
     h-full rounded-[2px]
     transition-all duration-300

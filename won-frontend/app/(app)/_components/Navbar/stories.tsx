@@ -12,7 +12,7 @@ export default {
 export const Default: StoryObj = {
   decorators: [
     (Story) => (
-      <div className="p-10 px-20">
+      <div className="md:p-10 p-6 md:px-20">
         <Story />
       </div>
     )

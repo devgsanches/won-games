@@ -7,12 +7,18 @@ import type { Swiper as SwiperType } from 'swiper'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { GameCard } from '../GameCard'
+import { GameCard, type GameCardProps } from '../GameCard'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
 
-export function GameCardSlider({ items }: { items: any[] }) {
+export function GameCardSlider({
+  items,
+  arrowColor = 'black'
+}: {
+  items: GameCardProps[]
+  arrowColor?: 'black' | 'white'
+}) {
   const [swiper, setSwiper] = React.useState<SwiperType | null>(null)
   const [isBeginning, setIsBeginning] = React.useState(true)
   const [isEnd, setIsEnd] = React.useState(false)
@@ -38,7 +44,7 @@ export function GameCardSlider({ items }: { items: any[] }) {
   }, [swiper])
 
   return (
-    <div className="mx-auto w-full px-4 md:px-6 lg:px-0 max-w-[1256px]">
+    <div className="mx-auto w-full px-4 md:px-6 lg:px-0 max-w-grid-container">
       <div className="relative">
         <div className="swiper-overflow-visible -mx-4 md:-mx-6 lg:mx-0">
           <Swiper
@@ -72,26 +78,30 @@ export function GameCardSlider({ items }: { items: any[] }) {
           variant="ghost"
           size="icon"
           className={cn(
-            'absolute left-2 md:left-4 lg:-left-12 top-1/2 -translate-y-1/2 z-50 rounded-full size-8 bg-background/80 backdrop-blur-sm',
+            'md:text-black absolute left-2 md:left-4 lg:-left-12 top-1/2 -translate-y-1/2 z-50 rounded-full size-8 bg-background/80 backdrop-blur-sm',
             isBeginning && 'opacity-50 cursor-not-allowed'
           )}
           onClick={() => swiper?.slidePrev()}
           disabled={isBeginning}
         >
-          <ChevronLeft className="size-7" />
+          <ChevronLeft
+            className={`size-7 ${arrowColor === 'white' ? 'text-white' : 'text-black'}`}
+          />
           <span className="sr-only">Previous slide</span>
         </Button>
         <Button
           variant="ghost"
           size="icon"
           className={cn(
-            'absolute right-2 md:right-4 lg:-right-12 top-1/2 -translate-y-1/2 z-50 rounded-full size-8 bg-background/80 backdrop-blur-sm',
+            'md:text-black absolute right-2 md:right-4 lg:-right-12 top-1/2 -translate-y-1/2 z-50 rounded-full size-8 bg-background/80 backdrop-blur-sm',
             isEnd && 'opacity-50 cursor-not-allowed'
           )}
           onClick={() => swiper?.slideNext()}
           disabled={isEnd}
         >
-          <ChevronRight className="size-7" />
+          <ChevronRight
+            className={`size-7 ${arrowColor === 'white' ? 'text-white' : 'text-black'}`}
+          />
           <span className="sr-only">Next slide</span>
         </Button>
       </div>

@@ -26,7 +26,8 @@ export const Default: StoryObj = {
         imageUrl: '/bully_cover.jpg',
         title: 'Salve a cidade',
         subtitle: 'Jogue a nova temporada de',
-        gameName: 'O Universo do Homem-Aranha'
+        gameName: 'O Universo do Homem-Aranha',
+        ribbonText: 'New Release'
       },
       {
         imageUrl: '/bully_cover.jpg',

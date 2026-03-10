@@ -17,14 +17,14 @@ export function Ribbon({
   return (
     <>
       <div
-        className={`${sizeMap[size]} ${color === 'primary' ? 'bg-ribbon-primary text-white' : 'bg-ribbon-secondary text-white'} flex items-center justify-center absolute -right-4.5 top-4 shadow-xl/20
+        className={`hidden md:flex ${sizeMap[size]} ${color === 'primary' ? 'bg-ribbon-primary text-white' : 'bg-ribbon-secondary text-white'} items-center justify-center absolute -right-4.5 top-6 shadow-xl/20
 `}
       >
         {children}
       </div>
 
       <div
-        className={`${color === 'primary' ? 'bg-ribbon-primary/50' : 'bg-ribbon-secondary/65'} absolute ${size === 'large' ? 'top-12' : 'top-11'}  w-4.5 h-2 -right-4.5`}
+        className={`hidden md:flex ${color === 'primary' ? 'bg-ribbon-primary/50' : 'bg-ribbon-secondary/65'} absolute ${size === 'large' ? 'top-14' : 'top-11'}  w-4.5 h-2 -right-4.5`}
         style={{
           clipPath: 'polygon(0 0, 0% 100%, 100% 0)'
         }}

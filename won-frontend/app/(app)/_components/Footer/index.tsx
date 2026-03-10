@@ -12,12 +12,12 @@ export function Footer() {
       />
       <div className="flex flex-col gap-6 p-6 md:max-w-7xl md:mx-auto">
         <div>
-          <Logo color="black" />
+          <Logo color="black" id="logo-footer" />
         </div>
         <div className="grid md:grid-cols-4 grid-cols-2 space-y-6 gap-16">
           <div className="uppercase flex flex-col gap-3.75">
             <Heading
-              text="Contato"
+              text="Contact"
               color="black"
               decorate={{ color: 'secondary', orientation: 'horizontal' }}
               size="large"
@@ -33,7 +33,7 @@ export function Footer() {
           <div className="flex flex-col gap-3.75 uppercase">
             {' '}
             <Heading
-              text="nos acompanhe"
+              text="Follow us"
               color="black"
               decorate={{ color: 'secondary', orientation: 'horizontal' }}
               size="large"
@@ -54,9 +54,9 @@ export function Footer() {
               size="large"
             />
             <div className="text-light-gray flex flex-col gap-1.5 first-letter:capitalize capitalize">
-              <a href="/">Loja</a>
-              <a href="/">Explorar</a>
-              <a href="/">Buscar</a>
+              <a href="/">Store</a>
+              <a href="/">Explore</a>
+              <a href="/">Search</a>
               <a href="/">FAQ</a>
             </div>
           </div>
@@ -64,21 +64,21 @@ export function Footer() {
             {' '}
             <div className="uppercase">
               <Heading
-                text="localização"
+                text="Location"
                 color="black"
                 decorate={{ color: 'secondary', orientation: 'horizontal' }}
                 size="large"
               />
             </div>
             <div className="text-light-gray flex flex-col gap-1.5 text-sm first-letter:capitalize ">
-              <p>Rua 7 de Maio</p>
+              <p>7 de Maio Street</p>
               <span>527 - 89020330</span>
-              <a href="/">Rio de Janeiro, Brasil</a>
+              <a href="/">Rio de Janeiro, Brazil</a>
             </div>
           </div>
         </div>
         <p className="text-light-gray text-xs text-center">
-          Won Games 2020 © Todos os Direitos Reservados
+          Won Games 2020 © All Rights Reserved
         </p>
       </div>
     </footer>
