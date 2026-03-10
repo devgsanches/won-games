@@ -15,6 +15,7 @@ export interface GameCardProps {
   id: string
   imgUrl: string
   name: string
+  title?: string
   slug: string
   developer: string
   price?: number
@@ -27,6 +28,9 @@ export interface GameCardProps {
   cardNumber?: number
   purchaseDate?: string
   flag?: string
+  cover: {
+    url: string
+  }
 }
 
 export function GameCard({

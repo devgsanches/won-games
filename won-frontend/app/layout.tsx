@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
+import { ApolloProviderWrapper } from "@/lib/apollo-client"
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -25,7 +26,11 @@ export default function RootLayout({
         <link rel="icon" href="/logo-mobile.svg" />
       </head>
       <body className="antialiased min-h-screen overflow-x-hidden">
-        <main className="flex-1">{children} </main>
+        <main className="flex-1">
+          <ApolloProviderWrapper>
+            {children}
+          </ApolloProviderWrapper>
+        </main>
       </body>
     </html>
   )

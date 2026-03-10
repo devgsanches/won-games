@@ -1,14 +1,26 @@
 'use client'
 
+import { GET_GAMES } from '@/app/queries/get-games'
 import type { BannerProps } from '../../_components/Banner'
 import { BannerSlider } from '../../_components/BannerSlider'
-import { Container } from '../../_components/Container'
 import type { GameCardProps } from '../../_components/GameCard'
-import { GameCardSlider } from '../../_components/GameCardSlider'
-import { Heading } from '../../_components/Heading'
-import { Highlight, type HighlightProps } from '../../_components/Highlight'
+import { type HighlightProps } from '../../_components/Highlight'
 import { Section } from '../../_components/Section'
 import { Showcase } from '../../_components/Showcase'
+
+export interface GameCardResponse {
+  cover: {
+    url: string
+    __typename: string
+  }
+  title: string
+  slug: string
+  __typename: string
+  developers: {
+    name: string
+    slug: string
+  }[]
+}
 
 export interface HomeProps {
   banners: BannerProps[]
@@ -27,10 +39,13 @@ export function Home({
   upcomingGames,
   upcomingHighlight
 }: HomeProps) {
+
+  const { loading, error, games } = GET_GAMES()
+
   return (
-    <div className="pb-30">
+    <div className="pb-30" >
       <Section className="md:pt-24">
-        <BannerSlider items={banners} />
+        <BannerSlider items={games} />
       </Section>
 
       <Section className="md:bg-white-bg relative">

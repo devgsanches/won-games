@@ -20,7 +20,8 @@ export default async function GamePage({ params }: GamePageProps) {
       'https://images.gog-statics.com/5643a7c831df452d29005caeca24c28cdbfaa6fbea5a9556b147ee26d325fa70_bg_crop_1366x655.jpg',
     gameInfo: {
       id: '1',
-      imgUrl: 'https://images.gog-statics.com/5643a7c831df452d29005caeca24c28cdbfaa6fbea5a9556b147ee26d325fa70_bg_crop_1366x655.jpg',
+      imgUrl:
+        'https://images.gog-statics.com/5643a7c831df452d29005caeca24c28cdbfaa6fbea5a9556b147ee26d325fa70_bg_crop_1366x655.jpg',
       title: 'Cyberpunk 2077',
       slug: 'cyberpunk-2077',
       developer: 'CD Projekt Red',

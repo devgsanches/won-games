@@ -29,6 +29,8 @@
     "*.{css,scss,json,md}": "prettier --write"
   },
   "dependencies": {
+    "@apollo/client": "^4.1.6",
+    "@apollo/client-integration-nextjs": "^0.14.4",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@hookform/resolvers": "^5.2.2",
@@ -45,6 +47,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
+    "graphql": "^16.13.1",
     "gsap": "^3.14.2",
     "lucide-react": "^0.562.0",
     "motion": "^12.34.0",
@@ -53,6 +56,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.69.0",
+    "rxjs": "^7.8.2",
     "swiper": "^12.0.3",
     "tailwind-merge": "^3.4.0",
     "uuid": "^13.0.0",

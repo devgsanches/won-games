@@ -1,19 +1,14 @@
+import type { GameCardResponse } from '../../_templates/Home'
 import { Button } from '../Button'
 import { Ribbon } from '../Ribbon'
 
-export interface BannerProps {
-  imageUrl: string
-  title?: string
-  subtitle?: string
-  gameName?: string
+export type BannerProps = Omit<GameCardResponse, '__typename' | 'developers'> & {
   ribbonText?: string
 }
 
 export function Banner({
-  imageUrl,
+  cover,
   title,
-  subtitle,
-  gameName,
   ribbonText
 }: BannerProps) {
   return (
@@ -25,7 +20,7 @@ export function Banner({
         <div
           className="w-full h-58 bg-cover bg-center"
           style={{
-            backgroundImage: `url('${imageUrl}')`
+            backgroundImage: `url('http://localhost:1337${cover.url ?? 'https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder-103.png?fit=1200%2C800&ssl=1&w=640'}')`
           }}
         />
 
@@ -33,9 +28,9 @@ export function Banner({
           <div className="flex flex-col gap-2.75">
             <div>
               <p className="text-xlarge font-semibold">{title}</p>
-              <p className="text-sm truncate">
-                {subtitle}{' '}
-                <span className="text-primary font-bold">{gameName}</span>
+              <p className="text-sm truncate first-letter:uppercase">
+                jogue a nova temporada de {""}
+                <span className="text-primary font-bold">{title}</span>
               </p>
             </div>
             <div>
@@ -49,7 +44,7 @@ export function Banner({
         <div
           className="h-full w-full bg-cover bg-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded z-10"
           style={{
-            backgroundImage: `url('${imageUrl}')`
+            backgroundImage: `url('http://localhost:1337${cover.url ?? 'https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder-103.png?fit=1200%2C800&ssl=1&w=640'}')`
           }}
         >
           {ribbonText && (
@@ -63,8 +58,8 @@ export function Banner({
             <div>
               <p className="text-xxxlarge font-semibold">{title}</p>
               <p className="text-xlarge">
-                {subtitle}{' '}
-                <span className="text-primary font-bold">{gameName}</span>
+                jogue a nova temporada de {""}
+                <span className="text-primary font-bold">{title}</span>
               </p>
             </div>
             <div>

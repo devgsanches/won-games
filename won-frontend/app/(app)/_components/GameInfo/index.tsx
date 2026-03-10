@@ -12,22 +12,21 @@ import { useCartStore } from '../../_store/cart'
 export interface GameInfoProps {
   id: string
   imgUrl: string
-  name: string
-  name: string
+  title: string
   description: string
   price: number
   slug: string
   developer: string
 }
 
-export function GameInfo({ id, imgUrl, name, title, description, price, slug, developer }: GameInfoProps) {
+export function GameInfo({ id, imgUrl, title, description, price, slug, developer }: GameInfoProps) {
   const [isAddedToCart, setIsAddedToCart] = useState(false)
 
   const { addNewItem } = useCartStore()
 
   function handleAddToCart() {
     setIsAddedToCart(!isAddedToCart)
-    addNewItem({ id, imgUrl, name, price, slug, developer })
+    addNewItem({ id, imgUrl, name: title, price, slug, developer })
   }
 
   const isMobile = useMediaQuery('(max-width: 768px)')

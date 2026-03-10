@@ -10,12 +10,12 @@ export default factories.createCoreController(
     async populate(ctx) {
       console.log('RODANDO NO SERVIDOR')
       const options = {
-        limit: 48,
+        limit: 45,
         order: 'desc:trending',
         ...ctx.query,
       }
 
-     await strapi.service('api::game.game').populate(options)
+      await strapi.service('api::game.game').populate(options)
 
       ctx.send('Finished populating games!')
     },
