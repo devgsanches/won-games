@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     root: process.cwd()
   },
   images: {
+    dangerouslyAllowLocalIP: true,  // ← adicione esta linha,
     remotePatterns: [
       {
         protocol: 'https',
@@ -34,6 +35,12 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'items.gog.com',
         port: '',
+        pathname: '/**'
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '1337',
         pathname: '/**'
       }
     ]

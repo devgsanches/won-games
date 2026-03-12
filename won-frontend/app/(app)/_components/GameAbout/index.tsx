@@ -6,9 +6,10 @@ import { Heading } from '../Heading'
 export interface GameAboutProps {
   shortDescription: string
   description: string
+  cover: string
 }
 
-export function GameAbout({ shortDescription, description }: GameAboutProps) {
+export function GameAbout({ shortDescription, description, cover }: GameAboutProps) {
   const isMobile = useMediaQuery('(max-width: 768px)')
   return (
     <div className="md:bg-white md:p-12">
@@ -22,7 +23,10 @@ export function GameAbout({ shortDescription, description }: GameAboutProps) {
               decorate={{ color: 'secondary', orientation: 'vertical' }}
             />
           )}
-          <div className="bg-center bg-cover bg-[url(/cyberpunk-game.jpg)] w-full md:w-89 h-42.75" />
+          <div
+            className="bg-center bg-cover w-full md:w-89 h-42.75"
+            style={{ backgroundImage: `url(http://localhost:1337${cover})` }}
+          />
           <div className="flex flex-col gap-6">
             {!isMobile && (
               <Heading

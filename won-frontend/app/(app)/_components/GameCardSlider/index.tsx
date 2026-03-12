@@ -11,12 +11,13 @@ import { GameCard, type GameCardProps } from '../GameCard'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
+import type { GamesNewReleases } from '@/app/queries/get-new-releases'
 
 export function GameCardSlider({
   items,
   arrowColor = 'black'
 }: {
-  items: GameCardProps[]
+  items: GamesNewReleases[]
   arrowColor?: 'black' | 'white'
 }) {
   const [swiper, setSwiper] = React.useState<SwiperType | null>(null)
@@ -46,7 +47,7 @@ export function GameCardSlider({
   return (
     <div className="mx-auto w-full px-4 md:px-6 lg:px-0 max-w-grid-container">
       <div className="relative">
-        <div className="swiper-overflow-visible -mx-4 md:-mx-6 lg:mx-0">
+        <div className="-mx-4 md:-mx-6 lg:mx-0">
           <Swiper
             onSwiper={setSwiper}
             modules={[Navigation]}
@@ -55,7 +56,7 @@ export function GameCardSlider({
             breakpoints={{
               468: {
                 slidesPerView: 2,
-                spaceBetween: 8
+                spaceBetween: 12
               },
               768: {
                 slidesPerView: 2.2,
@@ -63,13 +64,17 @@ export function GameCardSlider({
               },
               1024: {
                 slidesPerView: 4,
-                spaceBetween: 16
+                spaceBetween: 20
+              },
+              1280: {
+                slidesPerView: 4,
+                spaceBetween: 24
               }
             }}
           >
             {items.map((item, i) => (
               <SwiperSlide key={i}>
-                <GameCard {...item} />
+                <GameCard {...item} size="full" />
               </SwiperSlide>
             ))}
           </Swiper>

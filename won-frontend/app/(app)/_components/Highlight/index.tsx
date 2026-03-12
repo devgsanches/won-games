@@ -70,10 +70,10 @@ export function Highlight({
           ) : (
             <div className="w-full flex flex-col gap-4 md:gap-3 pr-2.75 md:pr-12 md:pb-12 md:justify-end">
               <div className="pt-4.75 flex flex-col md:items-end">
-                <p className="text-lg md:text-xxxlarge font-semibold truncate">
+                <p className="text-lg md:text-xxxlarge font-semibold truncate ">
                   {title}
                 </p>
-                <p className="text-sm md:text-lg font-light ">{subtitle}</p>
+                <p className="text-sm md:text-base md:max-w-3xl font-light text-right">{subtitle}</p>
               </div>
 
               <div className="flex justify-end pr-3 md:pr-0">

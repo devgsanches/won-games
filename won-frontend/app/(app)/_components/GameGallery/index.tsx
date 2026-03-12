@@ -13,15 +13,15 @@ import 'swiper/css/navigation'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 export type GalleryImageProps = {
-  src: string
+  url: string
   label: string
 }
 
 export type GameGalleryProps = {
-  items: GalleryImageProps[]
+  images: GalleryImageProps[]
 }
 
-export function GameGallery({ items }: GameGalleryProps) {
+export function GameGallery({ images }: GameGalleryProps) {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const [thumbSwiper, setThumbSwiper] = useState<SwiperType | null>(null)
   const [modalSwiper, setModalSwiper] = useState<SwiperType | null>(null)
@@ -133,7 +133,7 @@ export function GameGallery({ items }: GameGalleryProps) {
                 }
               }}
             >
-              {items.map((item, index) => (
+              {images?.map((image, index) => (
                 <SwiperSlide key={`thumb-${index}`}>
                   <div
                     role="button"
@@ -147,8 +147,8 @@ export function GameGallery({ items }: GameGalleryProps) {
                     }}
                   >
                     <Image
-                      src={item.src}
-                      alt={`Thumb - ${item.label}`}
+                      src={`http://localhost:1337${image.url}`}
+                      alt={`Thumb - ${image.label}`}
                       fill
                       className="object-cover"
                     />
@@ -208,12 +208,12 @@ export function GameGallery({ items }: GameGalleryProps) {
                 spaceBetween={0}
                 slidesPerView={1}
               >
-                {items.map((item, index) => (
+                {images?.map((image, index) => (
                   <SwiperSlide key={`gallery-${index}`}>
                     <div className="relative w-full aspect-video">
                       <Image
-                        src={item.src}
-                        alt={item.label}
+                        src={`http://localhost:1337${image.url}`}
+                        alt={image.label}
                         fill
                         className="object-contain"
                       />

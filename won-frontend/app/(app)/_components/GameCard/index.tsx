@@ -11,14 +11,11 @@ import { useRouter } from 'next/navigation'
 
 import { useCartStore } from '../../_store/cart'
 
-export interface GameCardProps {
-  id: string
-  imgUrl: string
-  name: string
-  title?: string
-  slug: string
-  developer: string
-  price?: number
+import type { GamesNewReleases } from '@/app/queries/get-new-releases'
+import { cn } from '@/lib/utils'
+import type { Game } from '../../(default)/games/page'
+
+export type GameCardProps = {
   size?: 'small' | 'normal' | 'full'
   promotion?: {
     oldPrice: string
@@ -28,24 +25,20 @@ export interface GameCardProps {
   cardNumber?: number
   purchaseDate?: string
   flag?: string
-  cover: {
-    url: string
-  }
-}
+} & Game
 
 export function GameCard({
-  id,
-  imgUrl,
-  name,
-  slug,
-  developer,
-  price,
   size = 'normal',
   promotion,
   wishlist = false,
   cardNumber,
   purchaseDate,
-  flag
+  flag,
+  cover,
+  title,
+  slug,
+  developers,
+  price,
 }: GameCardProps) {
   const [isFavorited, setIsFavorited] = useState(false)
   const [isAddedToCart, setIsAddedToCart] = useState(false)
@@ -60,7 +53,8 @@ export function GameCard({
     router.push(`/game/${slug}`)
   }
 
-  function addedToCart(item: GameCardProps) {
+  function addedToCart(item: Omit<GamesNewReleases, 'short_description'>) {
+
     setIsAddedToCart(!isAddedToCart)
 
     addNewItem(item)
@@ -77,7 +71,7 @@ export function GameCard({
       )}
       <div
         className={`${size === 'small' ? 'h-34.25' : 'h-37.75'} w-full bg-cover bg-center cursor-pointer`}
-        style={{ backgroundImage: `url(${imgUrl})` }}
+        style={{ backgroundImage: `url(http://localhost:1337${cover.url})` }}
         onClick={handleClick}
       />
       <div
@@ -85,11 +79,11 @@ export function GameCard({
       >
         <div className="flex flex-col justify-between">
           <div>
-            <p className="text-black font-semibold line-clamp-2 wrap-break-word">
-              {name}
+            <p className={cn('text-black font-semibold ', developers.length > 1 ? 'line-clamp-1' : 'line-clamp-2 wrap-break-word')}>
+              {title}
             </p>
-            <p className="text-xs font-medium text-xlight-gray line-clamp-1 wrap-break-word">
-              {developer}
+            <p className="text-xs font-medium text-xlight-gray line-clamp-1 wrap-break-word max-w-[calc(100%-60px)]">
+              {developers.map((developer) => developer.name).join(', ')}
             </p>
           </div>
 
@@ -123,7 +117,7 @@ export function GameCard({
               <PriceBadge price={price} />
               <Button
                 size="icon"
-                onClick={() => addedToCart({ id, imgUrl, name, slug, developer, price })}
+                onClick={() => addedToCart({ cover, title, slug, developers, price })}
                 className={`
     h-full rounded-[2px]
     transition-all duration-300

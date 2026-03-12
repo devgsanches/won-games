@@ -1,12 +1,12 @@
 import { create } from 'zustand'
-import type { GameCardProps } from '../_components/GameCard'
+import type { GetNewReleases } from '@/app/queries/get-new-releases'
 
 type CartStore = {
-  items: GameCardProps[]
-  addNewItem: (item: GameCardProps) => void
+  items: Omit<GetNewReleases, '__typename' | 'short_description'>[]
+  addNewItem: (item: Omit<GetNewReleases, '__typename' | 'short_description'>) => void
 }
 
 export const useCartStore = create<CartStore>((set) => ({
   items: [],
-  addNewItem: (item: GameCardProps) => set((state) => ({ items: [...state.items, item] }))
+  addNewItem: (item: Omit<GetNewReleases, '__typename' | 'short_description'>) => set((state) => ({ items: [...state.items, item] }))
 }))

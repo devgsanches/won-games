@@ -1,30 +1,31 @@
+'use client'
+
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { Container } from '../Container'
-import type { GameCardProps } from '../GameCard'
 import { GameCardSlider } from '../GameCardSlider'
 import { Heading } from '../Heading'
-import { Highlight, type HighlightProps } from '../Highlight'
+import { Highlight } from '../Highlight'
+import type { GamesNewReleases } from '@/app/queries/get-new-releases'
 
-export interface ShowcaseProps {
+export type ShowcaseProps = {
+  games: GamesNewReleases[]
   title?: string
   titleColor?: 'white' | 'black'
   mobileTitleColor?: 'white' | 'black'
-  gameHighlight?: HighlightProps
-  games?: GameCardProps[]
   arrowColor?: 'white' | 'black'
   arrowColorMobile?: 'white' | 'black'
 }
 
 export function Showcase({
-  title,
-  titleColor,
-  mobileTitleColor = 'white',
-  gameHighlight,
   games,
-  arrowColor,
-  arrowColorMobile = 'white'
+  title = 'New Releases',
+  titleColor = 'white',
+  mobileTitleColor = 'white',
+  arrowColor = 'black',
+  arrowColorMobile = 'white',
 }: ShowcaseProps) {
   const isMobile = useMediaQuery('(max-width: 768px)')
+
   return (
     <Container className="mt-12">
       {title && (
@@ -37,7 +38,7 @@ export function Showcase({
           />
         </div>
       )}
-      {gameHighlight && <Highlight {...gameHighlight} />}
+      {games && <Highlight title={games[0]?.title ?? ''} subtitle={games[0]?.short_description ?? ''} textDirection={'right'} textButton={'Buy now'} />}
 
       {games && (
         <div className="pl-grid-gutter">

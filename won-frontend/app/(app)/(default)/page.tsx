@@ -1,26 +1,34 @@
-import { Home, type HomeProps } from '../_templates/Home'
-import banners from '../_components/BannerSlider/mock'
+import { Home } from '../_templates/Home'
 
-import newReleasesGames from '../_components/GameCardSlider/mock'
+import { query } from "../_lib/apollo-client"
+import { GET_GAMES_BANNER, type GetGamesBannerResponse } from '@/app/queries/get-games-banner'
+import { GET_NEW_RELEASES, type GamesNewReleasesResponse } from '@/app/queries/get-new-releases'
 
-import mostPopularHighlight from '../_components/Highlight/mock'
 
-import mostPopularGames from '../_components/GameCardSlider/mock'
+// Banners
+const bannerData = await query<GetGamesBannerResponse>({
+  query: GET_GAMES_BANNER,
+});
+const banners = bannerData?.data?.games ?? []
 
-import upcomingGames from '../_components/GameCardSlider/mock'
 
-import upcomingHighlight from '../_components/Highlight/mock'
+// New Releases
+const newReleasesData = await query<GamesNewReleasesResponse>({
+  query: GET_NEW_RELEASES,
+});
 
-const props: HomeProps = {
+const newReleases = newReleasesData?.data?.games ?? []
+
+const props = {
   banners,
-  newReleasesGames,
-  mostPopularHighlight,
-  mostPopularGames,
-  upcomingGames,
-  upcomingHighlight
+  newReleases
 }
 
-const HomePage = () => {
+const HomePage = async () => {
+  console.log({
+    newReleases
+  });
+
   return <Home {...props} />
 }
 

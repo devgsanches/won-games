@@ -1,51 +1,51 @@
-'use client'
-
-import { GET_GAMES } from '@/app/queries/get-games'
+import type { GamesNewReleases } from '@/app/queries/get-new-releases'
 import type { BannerProps } from '../../_components/Banner'
 import { BannerSlider } from '../../_components/BannerSlider'
 import type { GameCardProps } from '../../_components/GameCard'
-import { type HighlightProps } from '../../_components/Highlight'
 import { Section } from '../../_components/Section'
 import { Showcase } from '../../_components/Showcase'
 
 export interface GameCardResponse {
   cover: {
     url: string
-    __typename: string
   }
   title: string
   slug: string
-  __typename: string
   developers: {
     name: string
-    slug: string
   }[]
 }
 
 export interface HomeProps {
   banners: BannerProps[]
-  newReleasesGames: GameCardProps[]
-  mostPopularHighlight: HighlightProps
-  mostPopularGames: GameCardProps[]
-  upcomingGames: GameCardProps[]
-  upcomingHighlight: HighlightProps
+  newReleases: GamesNewReleases[]
+  // mostPopularHighlight: HighlightProps
+  // mostPopularGames: GameCardProps[]
+  // upcomingGames: GameCardProps[]
+  // upcomingHighlight: HighlightProps
 }
 
 export function Home({
   banners,
-  newReleasesGames,
-  mostPopularHighlight,
-  mostPopularGames,
-  upcomingGames,
-  upcomingHighlight
+  newReleases,
+  // mostPopularHighlight,
+  // mostPopularGames,
+  // upcomingGames,
+  // upcomingHighlight
 }: HomeProps) {
 
-  const { loading, error, games } = GET_GAMES()
+
+  /* Apollo ClientSide Render
+
+  const { loadingGamesBanner, errorGamesBanner, gamesBanner } = useGetGamesBanner()
+
+  onst { loading, error, newReleases } = useGetReleasesBanner() */
+
 
   return (
     <div className="pb-30" >
       <Section className="md:pt-24">
-        <BannerSlider items={games} />
+        <BannerSlider items={banners} />
       </Section>
 
       <Section className="md:bg-white-bg relative">
@@ -59,12 +59,10 @@ export function Home({
         ></div>
 
         <Showcase
-          title="New Releases"
-          titleColor="black"
-          mobileTitleColor="white"
-          games={newReleasesGames}
-          arrowColor="black"
-          arrowColorMobile="white"
+          games={newReleases}
+          titleColor='black'
+          mobileTitleColor='white'
+          arrowColor='black'
         />
       </Section>
 
@@ -72,18 +70,18 @@ export function Home({
         <Showcase
           title="Most Populars"
           titleColor="white"
-          gameHighlight={mostPopularHighlight}
-          games={newReleasesGames}
-          arrowColor="white"
+          mobileTitleColor='white'
+          arrowColor='white'
+          games={[]}
         />
       </Section>
 
-      <Section>
+      {/* <Section>
         <Showcase
           title="Upcoming"
           titleColor="white"
           gameHighlight={upcomingHighlight}
-          games={upcomingGames}
+          games={newReleases}
           arrowColor="white"
         />
       </Section>
@@ -91,10 +89,10 @@ export function Home({
       <Section>
         <Showcase
           gameHighlight={upcomingHighlight}
-          games={upcomingGames}
+          games={newReleases}
           arrowColor="white"
         />
-      </Section>
+      </Section> */}
     </div>
   )
 }

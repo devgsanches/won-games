@@ -4,11 +4,15 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { Heading } from '../Heading'
 import { Platforms } from './components/Platforms'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import dayjs from 'dayjs'
 
 export interface GameDetailsProps {
-  developer: string[]
-  categories: string[]
-  publishers: string[]
+  developer: {
+    name: string
+  }[]
+  categories: {
+    name: string
+  }[]
   rating: string
   releaseDate: string
   platforms: string[]
@@ -17,7 +21,6 @@ export interface GameDetailsProps {
 export function GameDetails({
   developer,
   categories,
-  publishers,
   rating,
   releaseDate,
   platforms = ['windows', 'linux', 'macos']
@@ -36,20 +39,15 @@ export function GameDetails({
       <div className="grid grid-cols-2 md:grid-cols-5 gap-12">
         <div className="flex flex-col gap-[3px]">
           <p className="text-sm font-normal text-xxlight-gray">Developer</p>
-          <p>Gearbox Software</p>
+          <p>{developer.map((developer) => developer.name).join(', ')}</p>
         </div>
         <div className="flex flex-col gap-[3px]">
-          {!isMobile ? (
+          {!isMobile && (
             <>
               <p className="text-sm font-normal text-xxlight-gray">
                 Release date
               </p>
-              <p>Sep 13, 2019</p>
-            </>
-          ) : (
-            <>
-              <p className="text-sm font-normal text-xxlight-gray">Publisher</p>
-              <p>Gearbox Software</p>
+              <p>{dayjs(releaseDate).format('YY [de] MMM[.] [de] YYYY').toLowerCase()}</p>
             </>
           )}
         </div>
@@ -69,19 +67,6 @@ export function GameDetails({
         <div className="flex flex-col gap-[3px]">
           {!isMobile ? (
             <>
-              <p className="text-sm font-normal text-xxlight-gray">Publisher</p>
-              <p>Gearbox Software</p>
-            </>
-          ) : (
-            <>
-              <p className="text-sm font-normal text-xxlight-gray">Rating</p>
-              <p>14+</p>
-            </>
-          )}
-        </div>
-        <div className="flex flex-col gap-[3px]">
-          {!isMobile ? (
-            <>
               <p className="text-sm font-normal text-xxlight-gray">Rating</p>
               <p>14+</p>
             </>
@@ -90,7 +75,7 @@ export function GameDetails({
               <p className="text-sm font-normal text-xxlight-gray">
                 Release date
               </p>
-              <p>Sep 13, 2019</p>
+              <p>{dayjs(releaseDate).format('YY' + 'de' + 'MMM' + 'de' + 'YYYY')}</p>
             </>
           )}
         </div>

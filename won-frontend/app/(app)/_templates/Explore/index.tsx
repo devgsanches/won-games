@@ -8,9 +8,14 @@ import { TextField } from '../../_components/TextField'
 import { GameCard } from '../../_components/GameCard'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-import games from '../../_components/GameCardSlider/mock'
+import type { Game } from '../../(default)/games/page'
+import { ShowMore } from '../../_components/ShowMore'
 
-export function ExploreTemplate() {
+export function ExploreTemplate({
+  games
+}: {
+  games: Game[]
+}) {
   const isMobile = useMediaQuery('(max-width: 768px)')
   const defaultFilters: FilterValues = {
     price: ['under-50', 'free', 'discount'],
@@ -25,9 +30,6 @@ export function ExploreTemplate() {
     setFilters(newFilters)
   }, [])
 
-  // TODO: Quando os games tiverem dados reais, filtrar aqui
-  // Por enquanto exibe todos os games
-  const filteredGames = games
 
   return (
     <Container>
@@ -46,19 +48,19 @@ export function ExploreTemplate() {
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 space-y-6 gap-x-26">
-            {filteredGames.map((g, i) => (
+            {games.map((g, i) => (
               <GameCard
                 key={i}
-                id={g.id}
-                imgUrl={g.imgUrl}
-                name={g.name}
+                cover={g.cover}
+                title={g.title}
+                developers={g.developers}
                 price={g.price}
                 slug={g.slug}
-                developer={g.developer}
                 size={isMobile ? 'full' : 'small'}
               />
             ))}
           </div>
+          <ShowMore />
         </div>
       </div>
     </Container>

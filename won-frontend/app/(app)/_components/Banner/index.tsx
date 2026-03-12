@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { GameCardResponse } from '../../_templates/Home'
 import { Button } from '../Button'
 import { Ribbon } from '../Ribbon'
@@ -9,6 +10,7 @@ export type BannerProps = Omit<GameCardResponse, '__typename' | 'developers'> & 
 export function Banner({
   cover,
   title,
+  slug,
   ribbonText
 }: BannerProps) {
   return (
@@ -20,21 +22,23 @@ export function Banner({
         <div
           className="w-full h-58 bg-cover bg-center"
           style={{
-            backgroundImage: `url('http://localhost:1337${cover.url ?? 'https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder-103.png?fit=1200%2C800&ssl=1&w=640'}')`
+            backgroundImage: `url('http://localhost:1337${cover ?? 'https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder-103.png?fit=1200%2C800&ssl=1&w=640'}')`
           }}
         />
 
         <div className="bg-dark-gray h-36 py-4 px-5 w-full">
           <div className="flex flex-col gap-2.75">
             <div>
-              <p className="text-xlarge font-semibold">{title}</p>
+              <p className="text-xlarge font-semibold truncate">{title}</p>
               <p className="text-sm truncate first-letter:uppercase">
                 jogue a nova temporada de {""}
                 <span className="text-primary font-bold">{title}</span>
               </p>
             </div>
             <div>
-              <Button size="md">Buy now</Button>
+              <Link href={`/game/${slug}`}>
+                <Button size="md">Buy now</Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -63,11 +67,13 @@ export function Banner({
               </p>
             </div>
             <div>
-              <Button size="lg">Buy now</Button>
+              <Link href={`/game/${slug}`}>
+                <Button size="lg">Buy now</Button>
+              </Link>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }

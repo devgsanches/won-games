@@ -10,23 +10,25 @@ import { useState } from 'react'
 import { useCartStore } from '../../_store/cart'
 
 export interface GameInfoProps {
-  id: string
-  imgUrl: string
+  cover: string
   title: string
   description: string
   price: number
   slug: string
-  developer: string
+  developers: {
+    name: string
+    slug: string
+  }[]
 }
 
-export function GameInfo({ id, imgUrl, title, description, price, slug, developer }: GameInfoProps) {
+export function GameInfo({ cover, title, description, price, slug, developers }: GameInfoProps) {
   const [isAddedToCart, setIsAddedToCart] = useState(false)
 
   const { addNewItem } = useCartStore()
 
   function handleAddToCart() {
     setIsAddedToCart(!isAddedToCart)
-    addNewItem({ id, imgUrl, name: title, price, slug, developer })
+    addNewItem({ cover: { url: cover }, title, price, slug, developers })
   }
 
   const isMobile = useMediaQuery('(max-width: 768px)')
@@ -55,7 +57,7 @@ export function GameInfo({ id, imgUrl, title, description, price, slug, develope
             </div>
           )}
         </div>
-        <p className="text-sm font-light text-xlight-gray md:max-w-180 md:text-lg">
+        <p className="text-sm font-light text-xlight-gray md:max-w-180 md:text-lg line-clamp-6">
           {description}
         </p>
       </div>
@@ -81,7 +83,7 @@ export function GameInfo({ id, imgUrl, title, description, price, slug, develope
             className="group md:max-w-46"
             icon={
               <CheckIcon
-                sx={{ fontSize: 20 }}
+                style={{ fontSize: '20px' }}
                 className="group-hover:bg-primary transition-all duration-300 ease-out"
               />
             }

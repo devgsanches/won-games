@@ -27,7 +27,6 @@ export function Navbar({ user = 'Sanchez', variant = 'dark' }: NavbarProps) {
 
   const { items } = useCartStore()
 
-  console.log({ items })
   return (
     <div
       className={`${variant === 'dark' ? 'bg-main-bg' : 'bg-transparent'} pt-6 px-4 xl:px-0 max-w-grid-container mx-auto`}
