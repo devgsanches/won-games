@@ -43,3 +43,7 @@ next-env.d.ts
 # storybook
 *storybook.log
 storybook-static
+
+# graphql schema (gerado pelo types:generate)
+schema.gql
+schema-temp.gql

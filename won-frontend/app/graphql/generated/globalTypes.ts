@@ -12,8 +12,11 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   Date: { input: any; output: any; }
+  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
   DateTime: { input: any; output: any; }
+  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: { input: any; output: any; }
 };
 
@@ -46,7 +49,7 @@ export type Category = {
   __typename?: 'Category';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
-  games: Array<Maybe<Game>>;
+  games: Array<Game>;
   games_connection?: Maybe<GameRelationResponseCollection>;
   name: Scalars['String']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -158,7 +161,7 @@ export type Developer = {
   __typename?: 'Developer';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
-  games: Array<Maybe<Game>>;
+  games: Array<Game>;
   games_connection?: Maybe<GameRelationResponseCollection>;
   name: Scalars['String']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -253,17 +256,17 @@ export type FloatFilterInput = {
 
 export type Game = {
   __typename?: 'Game';
-  categories: Array<Maybe<Category>>;
+  categories: Array<Category>;
   categories_connection?: Maybe<CategoryRelationResponseCollection>;
   cover: UploadFile;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   description: Scalars['String']['output'];
-  developers: Array<Maybe<Developer>>;
+  developers: Array<Developer>;
   developers_connection?: Maybe<DeveloperRelationResponseCollection>;
   documentId: Scalars['ID']['output'];
-  gallery: Array<Maybe<UploadFile>>;
+  gallery: Array<UploadFile>;
   gallery_connection?: Maybe<UploadFileRelationResponseCollection>;
-  platforms: Array<Maybe<Platform>>;
+  platforms: Array<Platform>;
   platforms_connection?: Maybe<PlatformRelationResponseCollection>;
   price: Scalars['Float']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -755,7 +758,7 @@ export type Platform = {
   __typename?: 'Platform';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   documentId: Scalars['ID']['output'];
-  games: Array<Maybe<Game>>;
+  games: Array<Game>;
   games_connection?: Maybe<GameRelationResponseCollection>;
   name: Scalars['String']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -849,39 +852,39 @@ export type PublisherInput = {
 
 export type Query = {
   __typename?: 'Query';
-  categories: Array<Maybe<Category>>;
+  categories: Array<Category>;
   categories_connection?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<Category>;
   developer?: Maybe<Developer>;
-  developers: Array<Maybe<Developer>>;
+  developers: Array<Developer>;
   developers_connection?: Maybe<DeveloperEntityResponseCollection>;
   game?: Maybe<Game>;
-  games: Array<Maybe<Game>>;
+  games: Array<Game>;
   games_connection?: Maybe<GameEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocale>;
-  i18NLocales: Array<Maybe<I18NLocale>>;
+  i18NLocales: Array<I18NLocale>;
   i18NLocales_connection?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
   platform?: Maybe<Platform>;
-  platforms: Array<Maybe<Platform>>;
+  platforms: Array<Platform>;
   platforms_connection?: Maybe<PlatformEntityResponseCollection>;
   publisher?: Maybe<Publisher>;
-  publishers: Array<Maybe<Publisher>>;
+  publishers: Array<Publisher>;
   publishers_connection?: Maybe<PublisherEntityResponseCollection>;
   reviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
   reviewWorkflowsWorkflowStage?: Maybe<ReviewWorkflowsWorkflowStage>;
-  reviewWorkflowsWorkflowStages: Array<Maybe<ReviewWorkflowsWorkflowStage>>;
+  reviewWorkflowsWorkflowStages: Array<ReviewWorkflowsWorkflowStage>;
   reviewWorkflowsWorkflowStages_connection?: Maybe<ReviewWorkflowsWorkflowStageEntityResponseCollection>;
-  reviewWorkflowsWorkflows: Array<Maybe<ReviewWorkflowsWorkflow>>;
+  reviewWorkflowsWorkflows: Array<ReviewWorkflowsWorkflow>;
   reviewWorkflowsWorkflows_connection?: Maybe<ReviewWorkflowsWorkflowEntityResponseCollection>;
   uploadFile?: Maybe<UploadFile>;
-  uploadFiles: Array<Maybe<UploadFile>>;
+  uploadFiles: Array<UploadFile>;
   uploadFiles_connection?: Maybe<UploadFileEntityResponseCollection>;
   usersPermissionsRole?: Maybe<UsersPermissionsRole>;
-  usersPermissionsRoles: Array<Maybe<UsersPermissionsRole>>;
+  usersPermissionsRoles: Array<UsersPermissionsRole>;
   usersPermissionsRoles_connection?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUser>;
-  usersPermissionsUsers: Array<Maybe<UsersPermissionsUser>>;
+  usersPermissionsUsers: Array<UsersPermissionsUser>;
   usersPermissionsUsers_connection?: Maybe<UsersPermissionsUserEntityResponseCollection>;
 };
 
@@ -1135,7 +1138,7 @@ export type ReviewWorkflowsWorkflow = {
   name: Scalars['String']['output'];
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   stageRequiredToPublish?: Maybe<ReviewWorkflowsWorkflowStage>;
-  stages: Array<Maybe<ReviewWorkflowsWorkflowStage>>;
+  stages: Array<ReviewWorkflowsWorkflowStage>;
   stages_connection?: Maybe<ReviewWorkflowsWorkflowStageRelationResponseCollection>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
@@ -1265,7 +1268,7 @@ export type UploadFile = {
   provider: Scalars['String']['output'];
   provider_metadata?: Maybe<Scalars['JSON']['output']>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
-  related?: Maybe<Array<Maybe<GenericMorph>>>;
+  related: Array<GenericMorph>;
   size: Scalars['Float']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   url: Scalars['String']['output'];
@@ -1392,12 +1395,12 @@ export type UsersPermissionsRole = {
   description?: Maybe<Scalars['String']['output']>;
   documentId: Scalars['ID']['output'];
   name: Scalars['String']['output'];
-  permissions: Array<Maybe<UsersPermissionsPermission>>;
+  permissions: Array<UsersPermissionsPermission>;
   permissions_connection?: Maybe<UsersPermissionsPermissionRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   type?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
-  users: Array<Maybe<UsersPermissionsUser>>;
+  users: Array<UsersPermissionsUser>;
   users_connection?: Maybe<UsersPermissionsUserRelationResponseCollection>;
 };
 

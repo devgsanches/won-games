@@ -1,43 +1,4 @@
 """
-Indicates exactly one field must be supplied and this field must not be `null`.
-"""
-directive @oneOf on INPUT_OBJECT
-
-"""
-Direct the client to resolve this field locally, either from the cache or local resolvers.
-"""
-directive @client(
-  """
-  When true, the client will never use the cache for this value. See
-  https://www.apollographql.com/docs/react/essentials/local-state/#forcing-resolvers-with-clientalways-true
-  """
-  always: Boolean
-) on FIELD | FRAGMENT_DEFINITION | INLINE_FRAGMENT
-
-"""
-Export this locally resolved field as a variable to be used in the remainder of this query. See
-https://www.apollographql.com/docs/react/essentials/local-state/#using-client-fields-as-variables
-"""
-directive @export(
-  """The variable name to export this field as."""
-  as: String!
-) on FIELD
-
-"""
-Specify a custom store key for this result. See
-https://www.apollographql.com/docs/react/advanced/caching/#the-connection-directive
-"""
-directive @connection(
-  """Specify the store key."""
-  key: String!
-
-  """
-  An array of query argument names to include in the generated custom store key.
-  """
-  filter: [String!]
-) on FIELD
-
-"""
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
 scalar JSON
@@ -308,7 +269,7 @@ type UploadFile {
   previewUrl: String
   provider: String!
   provider_metadata: JSON
-  related: [GenericMorph]
+  related: [GenericMorph!]!
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -375,7 +336,7 @@ type ReviewWorkflowsWorkflow {
   documentId: ID!
   name: String!
   stages_connection(filters: ReviewWorkflowsWorkflowStageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): ReviewWorkflowsWorkflowStageRelationResponseCollection
-  stages(filters: ReviewWorkflowsWorkflowStageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ReviewWorkflowsWorkflowStage]!
+  stages(filters: ReviewWorkflowsWorkflowStageFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ReviewWorkflowsWorkflowStage!]!
   stageRequiredToPublish: ReviewWorkflowsWorkflowStage
   contentTypes: JSON!
   createdAt: DateTime
@@ -482,9 +443,9 @@ type UsersPermissionsRole {
   description: String
   type: String
   permissions_connection(filters: UsersPermissionsPermissionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsPermissionRelationResponseCollection
-  permissions(filters: UsersPermissionsPermissionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UsersPermissionsPermission]!
+  permissions(filters: UsersPermissionsPermissionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UsersPermissionsPermission!]!
   users_connection(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserRelationResponseCollection
-  users(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UsersPermissionsUser]!
+  users(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UsersPermissionsUser!]!
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -573,7 +534,7 @@ type Category {
   name: String!
   slug: String!
   games_connection(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
-  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Game]!
+  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Game!]!
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -613,7 +574,7 @@ type Developer {
   name: String!
   slug: String!
   games_connection(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
-  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Game]!
+  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Game!]!
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -679,17 +640,17 @@ type Game {
   price: Float!
   cover: UploadFile!
   gallery_connection(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
-  gallery(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UploadFile]!
+  gallery(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [UploadFile!]!
   description: String!
   rating: ENUM_GAME_RATING!
   release_date: Date
   slug: String
   categories_connection(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): CategoryRelationResponseCollection
-  categories(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Category]!
+  categories(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Category!]!
   developers_connection(filters: DeveloperFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): DeveloperRelationResponseCollection
-  developers(filters: DeveloperFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Developer]!
+  developers(filters: DeveloperFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Developer!]!
   platforms_connection(filters: PlatformFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): PlatformRelationResponseCollection
-  platforms(filters: PlatformFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Platform]!
+  platforms(filters: PlatformFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Platform!]!
   short_description: String!
   createdAt: DateTime
   updatedAt: DateTime
@@ -730,7 +691,7 @@ type Platform {
   name: String!
   slug: String
   games_connection(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): GameRelationResponseCollection
-  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Game]!
+  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [Game!]!
   createdAt: DateTime
   updatedAt: DateTime
   publishedAt: DateTime
@@ -845,37 +806,37 @@ input PaginationArg {
 type Query {
   uploadFile(documentId: ID!, status: PublicationStatus = PUBLISHED): UploadFile
   uploadFiles_connection(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): UploadFileEntityResponseCollection
-  uploadFiles(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [UploadFile]!
+  uploadFiles(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [UploadFile!]!
   i18NLocale(documentId: ID!, status: PublicationStatus = PUBLISHED): I18NLocale
   i18NLocales_connection(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): I18NLocaleEntityResponseCollection
-  i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [I18NLocale]!
+  i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [I18NLocale!]!
   reviewWorkflowsWorkflow(documentId: ID!, status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflow
   reviewWorkflowsWorkflows_connection(filters: ReviewWorkflowsWorkflowFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflowEntityResponseCollection
-  reviewWorkflowsWorkflows(filters: ReviewWorkflowsWorkflowFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [ReviewWorkflowsWorkflow]!
+  reviewWorkflowsWorkflows(filters: ReviewWorkflowsWorkflowFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [ReviewWorkflowsWorkflow!]!
   reviewWorkflowsWorkflowStage(documentId: ID!, status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflowStage
   reviewWorkflowsWorkflowStages_connection(filters: ReviewWorkflowsWorkflowStageFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): ReviewWorkflowsWorkflowStageEntityResponseCollection
-  reviewWorkflowsWorkflowStages(filters: ReviewWorkflowsWorkflowStageFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [ReviewWorkflowsWorkflowStage]!
+  reviewWorkflowsWorkflowStages(filters: ReviewWorkflowsWorkflowStageFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [ReviewWorkflowsWorkflowStage!]!
   usersPermissionsRole(documentId: ID!, status: PublicationStatus = PUBLISHED): UsersPermissionsRole
   usersPermissionsRoles_connection(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): UsersPermissionsRoleEntityResponseCollection
-  usersPermissionsRoles(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [UsersPermissionsRole]!
+  usersPermissionsRoles(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [UsersPermissionsRole!]!
   usersPermissionsUser(documentId: ID!, status: PublicationStatus = PUBLISHED): UsersPermissionsUser
   usersPermissionsUsers_connection(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): UsersPermissionsUserEntityResponseCollection
-  usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [UsersPermissionsUser]!
+  usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [UsersPermissionsUser!]!
   category(documentId: ID!, status: PublicationStatus = PUBLISHED): Category
   categories_connection(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): CategoryEntityResponseCollection
-  categories(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Category]!
+  categories(filters: CategoryFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Category!]!
   developer(documentId: ID!, status: PublicationStatus = PUBLISHED): Developer
   developers_connection(filters: DeveloperFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): DeveloperEntityResponseCollection
-  developers(filters: DeveloperFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Developer]!
+  developers(filters: DeveloperFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Developer!]!
   game(documentId: ID!, status: PublicationStatus = PUBLISHED): Game
   games_connection(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): GameEntityResponseCollection
-  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Game]!
+  games(filters: GameFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Game!]!
   platform(documentId: ID!, status: PublicationStatus = PUBLISHED): Platform
   platforms_connection(filters: PlatformFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): PlatformEntityResponseCollection
-  platforms(filters: PlatformFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Platform]!
+  platforms(filters: PlatformFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Platform!]!
   publisher(documentId: ID!, status: PublicationStatus = PUBLISHED): Publisher
   publishers_connection(filters: PublisherFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): PublisherEntityResponseCollection
-  publishers(filters: PublisherFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Publisher]!
+  publishers(filters: PublisherFiltersInput, pagination: PaginationArg = {}, sort: [String] = [], status: PublicationStatus = PUBLISHED): [Publisher!]!
   me: UsersPermissionsMe
 }
 
@@ -903,40 +864,29 @@ type Mutation {
   deletePublisher(documentId: ID!): DeleteMutationResponse
   updateUploadFile(id: ID!, info: FileInfoInput): UploadFile!
   deleteUploadFile(id: ID!): UploadFile
-
   """Create a new role"""
   createUsersPermissionsRole(data: UsersPermissionsRoleInput!): UsersPermissionsCreateRolePayload
-
   """Update an existing role"""
   updateUsersPermissionsRole(id: ID!, data: UsersPermissionsRoleInput!): UsersPermissionsUpdateRolePayload
-
   """Delete an existing role"""
   deleteUsersPermissionsRole(id: ID!): UsersPermissionsDeleteRolePayload
-
   """Create a new user"""
   createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
-
   """Update an existing user"""
   updateUsersPermissionsUser(id: ID!, data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
-
   """Delete an existing user"""
   deleteUsersPermissionsUser(id: ID!): UsersPermissionsUserEntityResponse!
   login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
-
   """Register a user"""
   register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
-
   """Request a reset password token"""
   forgotPassword(email: String!): UsersPermissionsPasswordPayload
-
   """
   Reset user password. Confirm with a code (resetToken from forgotPassword)
   """
   resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
-
   """Change user password. Confirm with the current password."""
   changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
-
   """Confirm an email users email address"""
   emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
 }

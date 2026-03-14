@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import {
   GameAbout
 } from '@/app/(app)/_components/GameAbout'
@@ -11,37 +12,35 @@ import {
   GameDetails
 } from '@/app/(app)/_components/GameDetails'
 import { Separator } from '@/components/ui/separator'
+import type { GameBySlug } from '../../(game-layout)/game/[slug]/page'
 
-export function Game({
-  game
-}: GameProps) {
+export function Game(game: GameBySlug) {
 
   const gameInfo = {
-    cover: game.cover.url,
-    title: game.title,
-    description: game.description,
-    price: game.price,
-    slug: game.slug,
-    developers: game.developers,
+    cover: game.cover?.url ?? 'https://via.placeholder.com/150',
+    title: game.title ?? '',
+    description: game.short_description ?? '',
+    price: game.price ?? 0,
+    developers: game.developers ?? [],
   }
 
-  const gameGallery = game.gallery && game.gallery.map((gallery) => ({
-    url: `${gallery.url}`,
+  const gameGallery = game.gallery?.map((gallery) => ({
+    url: gallery.url,
     label: game.title ?? '',
   }))
 
   const gameAbout = {
-    shortDescription: game.short_description,
-    description: game.description,
+    shortDescription: game.short_description ?? '',
+    description: game.description ?? '',
     cover: game.gallery?.[4]?.url ?? '',
   }
 
   const gameDetails = {
-    developer: game.developers,
-    categories: game.categories,
+    developer: game.developers ?? [],
+    categories: game.categories ?? [],
     rating: game.rating,
-    releaseDate: game.release_date,
-    platforms: game.platforms.map((platform) => platform.name),
+    releaseDate: game.release_date ?? '',
+    platforms: game.platforms?.map((platform) => platform.name) ?? [],
   }
 
 
@@ -49,10 +48,18 @@ export function Game({
     <div className="bg-main-bg">
       {/* Hero/Cover */}
       <div className="bg-black h-130 relative">
-        <div
-          className="h-full bg-cover bg-center md:bg-top bg-no-repeat"
-          style={{ backgroundImage: `url(http://localhost:1337${game.cover.url})` }}
-        >
+        <div className="relative h-full w-full">
+          {game.cover?.url ? (
+            <Image
+              src={`http://localhost:1337${game.cover.url}`}
+              alt={game.title ?? 'Game cover'}
+              fill
+              sizes="100vw"
+              className="object-cover object-center md:object-top"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gray-800" />
+          )}
           <div className="absolute inset-0 bg-black/70" />
         </div>
         <div className="h-full relative">

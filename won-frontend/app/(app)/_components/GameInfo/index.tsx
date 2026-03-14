@@ -8,27 +8,23 @@ import { CheckIcon, Heart } from 'lucide-react'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import { useState } from 'react'
 import { useCartStore } from '../../_store/cart'
-
+import { getFormattedCurrency } from '@/lib/format-price'
 export interface GameInfoProps {
   cover: string
   title: string
   description: string
   price: number
-  slug: string
-  developers: {
-    name: string
-    slug: string
-  }[]
+  developers: Array<{ name: string }>
 }
 
-export function GameInfo({ cover, title, description, price, slug, developers }: GameInfoProps) {
+export function GameInfo({ cover, title, description, price, developers }: GameInfoProps) {
   const [isAddedToCart, setIsAddedToCart] = useState(false)
 
   const { addNewItem } = useCartStore()
 
   function handleAddToCart() {
     setIsAddedToCart(!isAddedToCart)
-    addNewItem({ cover: { url: cover }, title, price, slug, developers })
+    addNewItem({ cover: { url: cover }, title, price, developers })
   }
 
   const isMobile = useMediaQuery('(max-width: 768px)')
@@ -46,13 +42,17 @@ export function GameInfo({ cover, title, description, price, slug, developers }:
 
           {isMobile && (
             <div className="bg-secondary rounded-[2px] p-1 px-1.5 flex items-center absolute -right-2.5">
-              <p className="font-semibold text-white">R$215,00</p>
+              <p className="font-semibold text-white">
+                {price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+              </p>
             </div>
           )}
           {!isMobile && (
             <div>
               <div className="bg-secondary rounded-[2px] p-0.5 px-4 flex items-center">
-                <p className="font-semibold text-white text-lg">R$215,00</p>
+                <p className="font-semibold text-white text-lg">
+                  {getFormattedCurrency(price)}
+                </p>
               </div>
             </div>
           )}
