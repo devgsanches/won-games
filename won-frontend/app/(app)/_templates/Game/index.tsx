@@ -11,11 +11,6 @@ import {
   GameDetails
 } from '@/app/(app)/_components/GameDetails'
 import { Separator } from '@/components/ui/separator'
-import { type GetGameBySlug } from '@/app/queries/get-game-by-slug'
-
-export interface GameProps {
-  game: GetGameBySlug
-}
 
 export function Game({
   game
@@ -55,7 +50,7 @@ export function Game({
       {/* Hero/Cover */}
       <div className="bg-black h-130 relative">
         <div
-          className="h-full bg-cover bg-right md:bg-top bg-no-repeat"
+          className="h-full bg-cover bg-center md:bg-top bg-no-repeat"
           style={{ backgroundImage: `url(http://localhost:1337${game.cover.url})` }}
         >
           <div className="absolute inset-0 bg-black/70" />

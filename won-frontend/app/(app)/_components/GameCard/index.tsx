@@ -1,5 +1,7 @@
 'use client'
 
+import { memo } from 'react'
+import Image from 'next/image'
 import { Heart } from 'lucide-react'
 import { PriceBadge } from './components/price-badge'
 import { useState } from 'react'
@@ -11,7 +13,6 @@ import { useRouter } from 'next/navigation'
 
 import { useCartStore } from '../../_store/cart'
 
-import type { GamesNewReleases } from '@/app/queries/get-new-releases'
 import { cn } from '@/lib/utils'
 import type { Game } from '../../(default)/games/page'
 
@@ -27,7 +28,7 @@ export type GameCardProps = {
   flag?: string
 } & Game
 
-export function GameCard({
+export const GameCard = memo(function GameCard({
   size = 'normal',
   promotion,
   wishlist = false,
@@ -53,7 +54,7 @@ export function GameCard({
     router.push(`/game/${slug}`)
   }
 
-  function addedToCart(item: Omit<GamesNewReleases, 'short_description'>) {
+  function addedToCart(item: Game) {
 
     setIsAddedToCart(!isAddedToCart)
 
@@ -70,10 +71,17 @@ export function GameCard({
         </Ribbon>
       )}
       <div
-        className={`${size === 'small' ? 'h-34.25' : 'h-37.75'} w-full bg-cover bg-center cursor-pointer`}
-        style={{ backgroundImage: `url(http://localhost:1337${cover.url})` }}
+        className={`${size === 'small' ? 'h-34.25' : 'h-37.75'} w-full relative overflow-hidden cursor-pointer`}
         onClick={handleClick}
-      />
+      >
+        <Image
+          src={`http://localhost:1337${cover.url}`}
+          alt={title}
+          fill
+          sizes="(max-width: 768px) 100vw, 292px"
+          className="object-cover object-center"
+        />
+      </div>
       <div
         className={`shadow-lg grid grid-cols-[80%_20%] ${price && size === 'normal' ? 'h-22' : ''} ${price && size !== 'normal' ? 'h-24' : 'h-18'} bg-white p-4 pt-2.5 pb-2 max-w-full`}
       >
@@ -146,4 +154,4 @@ export function GameCard({
       </div>
     </div>
   )
-}
+})

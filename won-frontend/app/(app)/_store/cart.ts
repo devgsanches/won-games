@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { GetNewReleases } from '@/app/queries/get-new-releases'
+import type { GetNewReleases } from '@/app/graphql/queries/get-new-releases'
 
 type CartStore = {
   items: Omit<GetNewReleases, '__typename' | 'short_description'>[]

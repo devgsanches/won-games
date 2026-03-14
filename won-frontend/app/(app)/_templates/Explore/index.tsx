@@ -1,6 +1,8 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
+import Link from 'next/link'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { Search } from 'lucide-react'
 import { Container } from '../../_components/Container'
 import { ExploreSidebar, FilterValues } from '../../_components/ExploreSidebar'
@@ -12,11 +14,27 @@ import type { Game } from '../../(default)/games/page'
 import { ShowMore } from '../../_components/ShowMore'
 
 export function ExploreTemplate({
-  games
+  games,
+  currentPage,
+  hasMore,
 }: {
   games: Game[]
+  currentPage: number
+  hasMore: boolean
 }) {
+  const searchParams = useSearchParams()
+  const router = useRouter()
   const isMobile = useMediaQuery('(max-width: 768px)')
+
+  const pageParam = searchParams.get('page')
+  const page = Number(pageParam)
+
+  useEffect(() => {
+    if (page <= 0) {
+      router.replace('/games?page=1')
+    }
+  }, [searchParams, router])
+
   const defaultFilters: FilterValues = {
     price: ['under-50', 'free', 'discount'],
     sortBy: 'high-to-low',
@@ -30,6 +48,7 @@ export function ExploreTemplate({
     setFilters(newFilters)
   }, [])
 
+  const hasGames = games.length > 0 || hasMore
 
   return (
     <Container>
@@ -48,9 +67,9 @@ export function ExploreTemplate({
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 space-y-6 gap-x-26">
-            {games.map((g, i) => (
+            {games.map((g) => (
               <GameCard
-                key={i}
+                key={g.slug}
                 cover={g.cover}
                 title={g.title}
                 developers={g.developers}
@@ -60,7 +79,7 @@ export function ExploreTemplate({
               />
             ))}
           </div>
-          <ShowMore />
+          <ShowMore currentPage={currentPage} hasGames={hasGames} />
         </div>
       </div>
     </Container>

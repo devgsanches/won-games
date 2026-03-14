@@ -22,7 +22,7 @@ export function Banner({
         <div
           className="w-full h-58 bg-cover bg-center"
           style={{
-            backgroundImage: `url('http://localhost:1337${cover ?? 'https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder-103.png?fit=1200%2C800&ssl=1&w=640'}')`
+            backgroundImage: `url('http://localhost:1337${cover.url ?? 'https://i0.wp.com/espaferro.com.br/wp-content/uploads/2024/06/placeholder-103.png?fit=1200%2C800&ssl=1&w=640'}')`
           }}
         />
 

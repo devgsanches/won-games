@@ -11,7 +11,7 @@ import { GameCard, type GameCardProps } from '../GameCard'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
-import type { GamesNewReleases } from '@/app/queries/get-new-releases'
+import type { GamesNewReleases } from '@/app/graphql/queries/get-new-releases'
 
 export function GameCardSlider({
   items,

@@ -1,4 +1,4 @@
-import type { GamesNewReleases } from '@/app/queries/get-new-releases'
+import type { GamesNewReleases } from '@/app/graphql/queries/get-new-releases'
 import type { BannerProps } from '../../_components/Banner'
 import { BannerSlider } from '../../_components/BannerSlider'
 import type { GameCardProps } from '../../_components/GameCard'
@@ -45,7 +45,7 @@ export function Home({
   return (
     <div className="pb-30" >
       <Section className="md:pt-24">
-        <BannerSlider items={banners} />
+        <BannerSlider items={[]} />
       </Section>
 
       <Section className="md:bg-white-bg relative">
@@ -59,7 +59,7 @@ export function Home({
         ></div>
 
         <Showcase
-          games={newReleases}
+          games={[]}
           titleColor='black'
           mobileTitleColor='white'
           arrowColor='black'

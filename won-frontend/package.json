@@ -16,7 +16,8 @@
     "test:ci": "vitest run",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "generate": "npx plop --plopfile generators/plopfile.js"
+    "generate": "npx plop --plopfile generators/plopfile.js",
+    "types:generate": "graphql-codegen"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
@@ -83,6 +84,11 @@
     "@typescript-eslint/parser": "^8",
     "@vitest/browser-playwright": "^4.0.16",
     "@vitest/coverage-v8": "^4.0.16",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/near-operation-file-preset": "^5.0.0",
+    "@graphql-codegen/typed-document-node": "^5.0.2",
+    "@graphql-codegen/typescript": "^4.0.7",
+    "@graphql-codegen/typescript-operations": "^4.4.3",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "eslint-config-prettier": "^10.1.8",

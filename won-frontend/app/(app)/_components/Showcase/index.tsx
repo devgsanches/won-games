@@ -5,7 +5,7 @@ import { Container } from '../Container'
 import { GameCardSlider } from '../GameCardSlider'
 import { Heading } from '../Heading'
 import { Highlight } from '../Highlight'
-import type { GamesNewReleases } from '@/app/queries/get-new-releases'
+import type { GamesNewReleases } from '@/app/graphql/queries/get-new-releases'
 
 export type ShowcaseProps = {
   games: GamesNewReleases[]

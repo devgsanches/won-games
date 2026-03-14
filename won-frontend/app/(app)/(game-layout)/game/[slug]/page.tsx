@@ -1,6 +1,5 @@
 import { query } from '@/app/(app)/_lib/apollo-client'
 import { Game } from '@/app/(app)/_templates/Game'
-import { GET_GAME_BY_SLUG, type GetGameBySlugResponse } from '@/app/queries/get-game-by-slug'
 import { notFound } from 'next/navigation'
 
 
