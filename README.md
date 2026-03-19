@@ -1,6 +1,6 @@
 # Won Games
 
-E-commerce de jogos digitais, **WON GAMES**, demonstrando arquitetura moderna, tecnologias modernas e boas práticas.
+E-commerce de jogos digitais, **WON GAMES**, arquitetura/tecnologias modernas e boas práticas.
 
 ![Won Games](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)
 ![Strapi](https://img.shields.io/badge/Strapi-5.33-blue?style=flat-square&logo=strapi)
@@ -41,7 +41,7 @@ O **Won Games** é uma loja digital de jogos que combina um **frontend** em Next
 
 ---
 
-## 🛠 Stack tecnológica
+## 🛠 Stack
 
 ### Frontend (`won-frontend`)
 
