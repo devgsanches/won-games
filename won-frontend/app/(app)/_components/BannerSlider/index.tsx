@@ -10,8 +10,9 @@ import {
 } from '@/components/ui/carousel'
 import { cn } from '@/lib/utils'
 import { Banner, type BannerProps } from '../Banner'
+import type { GetHomeQuery } from '@/app/graphql/generated/home'
 
-export function BannerSlider({ items }: { items: BannerProps[] }) {
+export function BannerSlider({ items }: { items: GetHomeQuery['banners'] }) {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(1)
   const [count] = useState(items.length)
@@ -56,7 +57,12 @@ export function BannerSlider({ items }: { items: BannerProps[] }) {
                 key={i}
                 className="basis-full pl-0 md:px-6 w-full h-94 md:h-138 overflow-visible"
               >
-                <Banner {...item} />
+                <Banner
+                  slug={item.slug}
+                  title={item.title}
+                  image={item.image}
+                  ribbon={item.ribbon ?? null}
+                />
               </CarouselItem>
             ))}
           </CarouselContent>

@@ -20,6 +20,45 @@ export type Scalars = {
   JSON: { input: any; output: any; }
 };
 
+export type Banner = {
+  __typename?: 'Banner';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  image: UploadFile;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  ribbon?: Maybe<ComponentPageRibbon>;
+  slug: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type BannerEntityResponseCollection = {
+  __typename?: 'BannerEntityResponseCollection';
+  nodes: Array<Banner>;
+  pageInfo: Pagination;
+};
+
+export type BannerFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<BannerFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  documentId?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<BannerFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<BannerFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  ribbon?: InputMaybe<ComponentPageRibbonFiltersInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type BannerInput = {
+  image?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  ribbon?: InputMaybe<ComponentPageRibbonInput>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type BooleanFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
@@ -100,6 +139,90 @@ export type CategoryInput = {
 export type CategoryRelationResponseCollection = {
   __typename?: 'CategoryRelationResponseCollection';
   nodes: Array<Category>;
+};
+
+export type ComponentPageHighlight = {
+  __typename?: 'ComponentPageHighlight';
+  id: Scalars['ID']['output'];
+  subtitle: Scalars['String']['output'];
+  textButton?: Maybe<Scalars['String']['output']>;
+  textDirection?: Maybe<Enum_Componentpagehighlight_Textdirection>;
+  title: Scalars['String']['output'];
+};
+
+export type ComponentPageHighlightInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  textButton?: InputMaybe<Scalars['String']['input']>;
+  textDirection?: InputMaybe<Enum_Componentpagehighlight_Textdirection>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ComponentPagePopularGames = {
+  __typename?: 'ComponentPagePopularGames';
+  games: Array<Game>;
+  games_connection?: Maybe<GameRelationResponseCollection>;
+  highlight?: Maybe<ComponentPageHighlight>;
+  id: Scalars['ID']['output'];
+  title: Scalars['String']['output'];
+};
+
+
+export type ComponentPagePopularGamesGamesArgs = {
+  filters?: InputMaybe<GameFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type ComponentPagePopularGamesGames_ConnectionArgs = {
+  filters?: InputMaybe<GameFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentPagePopularGamesInput = {
+  games?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  highlight?: InputMaybe<ComponentPageHighlightInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ComponentPageRibbon = {
+  __typename?: 'ComponentPageRibbon';
+  color?: Maybe<Enum_Componentpageribbon_Color>;
+  id: Scalars['ID']['output'];
+  ribbonText?: Maybe<Scalars['String']['output']>;
+  size?: Maybe<Enum_Componentpageribbon_Size>;
+};
+
+export type ComponentPageRibbonFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentPageRibbonFiltersInput>>>;
+  color?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentPageRibbonFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentPageRibbonFiltersInput>>>;
+  ribbonText?: InputMaybe<StringFilterInput>;
+  size?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentPageRibbonInput = {
+  color?: InputMaybe<Enum_Componentpageribbon_Color>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  ribbonText?: InputMaybe<Scalars['String']['input']>;
+  size?: InputMaybe<Enum_Componentpageribbon_Size>;
+};
+
+export type ComponentPageSection = {
+  __typename?: 'ComponentPageSection';
+  highlight?: Maybe<ComponentPageHighlight>;
+  id: Scalars['ID']['output'];
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+export type ComponentPageSectionInput = {
+  highlight?: InputMaybe<ComponentPageHighlightInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DateFilterInput = {
@@ -214,6 +337,21 @@ export type DeveloperRelationResponseCollection = {
   nodes: Array<Developer>;
 };
 
+export enum Enum_Componentpagehighlight_Textdirection {
+  Left = 'left',
+  Right = 'right'
+}
+
+export enum Enum_Componentpageribbon_Color {
+  Primary = 'primary',
+  Secondary = 'secondary'
+}
+
+export enum Enum_Componentpageribbon_Size {
+  Large = 'large',
+  Small = 'small'
+}
+
 export enum Enum_Game_Rating {
   Br0 = 'BR0',
   Br10 = 'BR10',
@@ -258,7 +396,7 @@ export type Game = {
   __typename?: 'Game';
   categories: Array<Category>;
   categories_connection?: Maybe<CategoryRelationResponseCollection>;
-  cover: UploadFile;
+  cover?: Maybe<UploadFile>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   description: Scalars['String']['output'];
   developers: Array<Developer>;
@@ -381,7 +519,27 @@ export type GameRelationResponseCollection = {
   nodes: Array<Game>;
 };
 
-export type GenericMorph = Category | Developer | Game | I18NLocale | Platform | Publisher | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Banner | Category | ComponentPageHighlight | ComponentPagePopularGames | ComponentPageRibbon | ComponentPageSection | Developer | Game | Home | I18NLocale | Platform | Publisher | ReviewWorkflowsWorkflow | ReviewWorkflowsWorkflowStage | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+
+export type Home = {
+  __typename?: 'Home';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  documentId: Scalars['ID']['output'];
+  freeGames?: Maybe<ComponentPageSection>;
+  newGames?: Maybe<ComponentPageSection>;
+  popularGames?: Maybe<ComponentPagePopularGames>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  upcomingGames?: Maybe<ComponentPageSection>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type HomeInput = {
+  freeGames?: InputMaybe<ComponentPageSectionInput>;
+  newGames?: InputMaybe<ComponentPageSectionInput>;
+  popularGames?: InputMaybe<ComponentPagePopularGamesInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  upcomingGames?: InputMaybe<ComponentPageSectionInput>;
+};
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -490,6 +648,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createBanner?: Maybe<Banner>;
   createCategory?: Maybe<Category>;
   createDeveloper?: Maybe<Developer>;
   createGame?: Maybe<Game>;
@@ -501,9 +660,11 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteBanner?: Maybe<DeleteMutationResponse>;
   deleteCategory?: Maybe<DeleteMutationResponse>;
   deleteDeveloper?: Maybe<DeleteMutationResponse>;
   deleteGame?: Maybe<DeleteMutationResponse>;
+  deleteHome?: Maybe<DeleteMutationResponse>;
   deletePlatform?: Maybe<DeleteMutationResponse>;
   deletePublisher?: Maybe<DeleteMutationResponse>;
   deleteReviewWorkflowsWorkflow?: Maybe<DeleteMutationResponse>;
@@ -522,9 +683,11 @@ export type Mutation = {
   register: UsersPermissionsLoginPayload;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateBanner?: Maybe<Banner>;
   updateCategory?: Maybe<Category>;
   updateDeveloper?: Maybe<Developer>;
   updateGame?: Maybe<Game>;
+  updateHome?: Maybe<Home>;
   updatePlatform?: Maybe<Platform>;
   updatePublisher?: Maybe<Publisher>;
   updateReviewWorkflowsWorkflow?: Maybe<ReviewWorkflowsWorkflow>;
@@ -541,6 +704,12 @@ export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
+};
+
+
+export type MutationCreateBannerArgs = {
+  data: BannerInput;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
@@ -593,6 +762,11 @@ export type MutationCreateUsersPermissionsRoleArgs = {
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
+};
+
+
+export type MutationDeleteBannerArgs = {
+  documentId: Scalars['ID']['input'];
 };
 
 
@@ -673,6 +847,13 @@ export type MutationResetPasswordArgs = {
 };
 
 
+export type MutationUpdateBannerArgs = {
+  data: BannerInput;
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
 export type MutationUpdateCategoryArgs = {
   data: CategoryInput;
   documentId: Scalars['ID']['input'];
@@ -690,6 +871,12 @@ export type MutationUpdateDeveloperArgs = {
 export type MutationUpdateGameArgs = {
   data: GameInput;
   documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type MutationUpdateHomeArgs = {
+  data: HomeInput;
   status?: InputMaybe<PublicationStatus>;
 };
 
@@ -852,6 +1039,9 @@ export type PublisherInput = {
 
 export type Query = {
   __typename?: 'Query';
+  banner?: Maybe<Banner>;
+  banners: Array<Banner>;
+  banners_connection?: Maybe<BannerEntityResponseCollection>;
   categories: Array<Category>;
   categories_connection?: Maybe<CategoryEntityResponseCollection>;
   category?: Maybe<Category>;
@@ -861,6 +1051,7 @@ export type Query = {
   game?: Maybe<Game>;
   games: Array<Game>;
   games_connection?: Maybe<GameEntityResponseCollection>;
+  home?: Maybe<Home>;
   i18NLocale?: Maybe<I18NLocale>;
   i18NLocales: Array<I18NLocale>;
   i18NLocales_connection?: Maybe<I18NLocaleEntityResponseCollection>;
@@ -886,6 +1077,28 @@ export type Query = {
   usersPermissionsUser?: Maybe<UsersPermissionsUser>;
   usersPermissionsUsers: Array<UsersPermissionsUser>;
   usersPermissionsUsers_connection?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+
+export type QueryBannerArgs = {
+  documentId: Scalars['ID']['input'];
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryBannersArgs = {
+  filters?: InputMaybe<BannerFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryBanners_ConnectionArgs = {
+  filters?: InputMaybe<BannerFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
 };
 
 
@@ -951,6 +1164,11 @@ export type QueryGames_ConnectionArgs = {
   filters?: InputMaybe<GameFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  status?: InputMaybe<PublicationStatus>;
+};
+
+
+export type QueryHomeArgs = {
   status?: InputMaybe<PublicationStatus>;
 };
 

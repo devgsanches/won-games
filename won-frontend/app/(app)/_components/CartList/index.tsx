@@ -4,9 +4,11 @@ import type { GameCardProps } from '../GameCard'
 import { GameItem } from '../GameItem'
 import Image from 'next/image'
 import { useCartStore } from '../../_store/cart'
+import { getFormattedCurrency } from '@/lib/format-price'
+import type { GamesNewReleases } from '@/app/graphql/generated/games'
 
 interface CartListProps {
-  items: GameCardProps[]
+  items: Omit<GamesNewReleases, '__typename' | 'short_description'>[]
   total: number
   buyNow?: boolean
   isOpen?: boolean
@@ -38,8 +40,8 @@ export function CartList({ items, total, buyNow = false, isOpen, onOpenChange }:
               <div className="border-b border-xlight-gray/30" key={index}>
                 <div className="p-6 pb-0">
                   <GameItem
-                    imgUrl={item.imgUrl}
-                    name={item.name}
+                    imgUrl={`http://localhost:1337${item.cover?.url ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9cSGzVkaZvJD5722MU5A-JJt_T5JMZzotcw&s'}`}
+                    name={item.title ?? ''}
                     price={item.price ?? 0}
                   />
                 </div>
@@ -58,7 +60,7 @@ export function CartList({ items, total, buyNow = false, isOpen, onOpenChange }:
                 </Button>
               </div>
             )}
-            <p className="text-primary">R$ {total},00</p>
+            <p className="text-primary">{getFormattedCurrency(total ?? 0)}</p>
           </div>
         </div>
       ) : (

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_page_sections",
+  "info": {
+    "displayName": "section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "highlight": {
+      "type": "component",
+      "component": "page.highlight",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

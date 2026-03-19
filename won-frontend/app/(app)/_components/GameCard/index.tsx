@@ -15,6 +15,7 @@ import { useCartStore } from '../../_store/cart'
 
 import { cn } from '@/lib/utils'
 import type { Game } from '../../(default)/games/page'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
 export type GameCardProps = {
   size?: 'small' | 'normal' | 'full'
@@ -74,24 +75,28 @@ export const GameCard = memo(function GameCard({
         className={`${size === 'small' ? 'h-34.25' : 'h-37.75'} w-full relative overflow-hidden cursor-pointer`}
         onClick={handleClick}
       >
-        <Image
-          src={`http://localhost:1337${cover.url}`}
-          alt={title}
-          fill
-          sizes="(max-width: 768px) 100vw, 292px"
-          className="object-cover object-center"
-        />
+        {cover?.url ? (
+          <Image
+            src={`http://localhost:1337${cover.url}`}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 100vw, 292px"
+            className="object-cover object-center"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gray-700" />
+        )}
       </div>
       <div
-        className={`shadow-lg grid grid-cols-[80%_20%] ${price && size === 'normal' ? 'h-22' : ''} ${price && size !== 'normal' ? 'h-24' : 'h-18'} bg-white p-4 pt-2.5 pb-2 max-w-full`}
+        className={`shadow-lg grid grid-cols-[80%_20%] ${price && size === 'normal' ? 'h-22' : ''} ${size !== 'normal' && 'h-24'} bg-white p-4 pt-2.5 pb-2 max-w-full`}
       >
         <div className="flex flex-col justify-between">
           <div>
-            <p className={cn('text-black font-semibold ', developers.length > 1 ? 'line-clamp-1' : 'line-clamp-2 wrap-break-word')}>
+            <p className={cn('text-black font-semibold ', developers?.length > 1 || price === 0 ? 'line-clamp-1 truncate' : 'line-clamp-2 wrap-break-word')}>
               {title}
             </p>
             <p className="text-xs font-medium text-xlight-gray line-clamp-1 wrap-break-word max-w-[calc(100%-60px)]">
-              {developers.map((developer) => developer.name).join(', ')}
+              {developers?.map((developer) => developer.name).join(', ')}
             </p>
           </div>
 
@@ -101,7 +106,7 @@ export const GameCard = memo(function GameCard({
             </p>
           )}
         </div>
-        <div className="flex flex-col gap-2 items-end justify-between">
+        <div className={cn('flex flex-col items-end justify-between', price > 0 ? 'gap-2' : 'gap-0')}>
           <div className="relative">
             {isFavorited && <HeartConfetti />}
 
@@ -120,36 +125,37 @@ export const GameCard = memo(function GameCard({
             />
           </div>
 
-          {price && (
-            <div className="flex gap-0.75 items-center h-5.5">
-              <PriceBadge price={price} />
-              <Button
-                size="icon"
-                onClick={() => addedToCart({ cover, title, slug, developers, price })}
-                className={`
+          <div className="flex gap-0.75 items-center h-5.5">
+            {price && <PriceBadge price={price} />}
+            {price && <Button
+              size="icon"
+              onClick={() => addedToCart({ cover, title, slug, developers, price })}
+              className={`
     h-full rounded-[2px]
     transition-all duration-300
     ${isAddedToCart ? 'bg-secondary scale-100' : 'scale-100'}
     active:scale-95
   `}
+            >
+              <span
+                key={isAddedToCart ? 'added' : 'add'}
+                className="flex items-center justify-center animate-cart-pop"
               >
-                <span
-                  key={isAddedToCart ? 'added' : 'add'}
-                  className="flex items-center justify-center animate-cart-pop"
-                >
-                  {isAddedToCart ? (
-                    <img
-                      src={cartAddedUrl}
-                      alt="added to cart"
-                      className="w-4.5 h-4.5"
-                    />
-                  ) : (
-                    <AddShoppingCartIcon sx={{ fontSize: 16 }} />
-                  )}
-                </span>
-              </Button>
-            </div>
-          )}
+                {isAddedToCart ? (
+                  <img
+                    src={cartAddedUrl}
+                    alt="added to cart"
+                    className="w-4.5 h-4.5"
+                  />
+                ) : (
+                  <AddShoppingCartIcon sx={{ fontSize: 16 }} />
+                )}
+              </span>
+            </Button>}
+            {!price && <div className="flex items-center justify-center">
+              <span className="inline-block bg-linear-to-r from-green-400 via-green-500 to-green-600 text-white text-xs font-semibold px-3 py-px rounded-full shadow-md border tracking-wid select-none uppercase"> Free </span>
+            </div>}
+          </div>
         </div>
       </div>
     </div>

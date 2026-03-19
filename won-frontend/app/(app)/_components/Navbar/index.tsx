@@ -23,7 +23,7 @@ interface NavbarProps {
   variant?: 'dark' | 'transparent'
 }
 
-export function Navbar({ user = 'Sanchez', variant = 'dark' }: NavbarProps) {
+export function Navbar({ user, variant = 'dark' }: NavbarProps) {
 
   const { items } = useCartStore()
 
@@ -85,7 +85,7 @@ export function Navbar({ user = 'Sanchez', variant = 'dark' }: NavbarProps) {
           {user && <UserDropdown user={user} />}
           {!user && (
             <Link href={'/auth/sign-in'}>
-              <Button size={'sm'}>Sign in</Button>
+              <Button size={'sm'}>Sign In</Button>
             </Link>
           )}
         </div>

@@ -1,9 +1,7 @@
-import type { GamesNewReleases } from '@/app/graphql/queries/get-new-releases'
-import type { BannerProps } from '../../_components/Banner'
 import { BannerSlider } from '../../_components/BannerSlider'
-import type { GameCardProps } from '../../_components/GameCard'
 import { Section } from '../../_components/Section'
 import { Showcase } from '../../_components/Showcase'
+import type { GetHomeQuery } from '@/app/graphql/generated/home'
 
 export interface GameCardResponse {
   cover: {
@@ -16,23 +14,16 @@ export interface GameCardResponse {
   }[]
 }
 
-export interface HomeProps {
-  banners: BannerProps[]
-  newReleases: GamesNewReleases[]
-  // mostPopularHighlight: HighlightProps
-  // mostPopularGames: GameCardProps[]
-  // upcomingGames: GameCardProps[]
-  // upcomingHighlight: HighlightProps
-}
-
 export function Home({
   banners,
   newReleases,
+  upcoming: upcomingGames,
+  free: freeGames,
+  sections,
   // mostPopularHighlight,
   // mostPopularGames,
-  // upcomingGames,
   // upcomingHighlight
-}: HomeProps) {
+}: GetHomeQuery) {
 
 
   /* Apollo ClientSide Render
@@ -45,7 +36,7 @@ export function Home({
   return (
     <div className="pb-30" >
       <Section className="md:pt-24">
-        <BannerSlider items={[]} />
+        <BannerSlider items={banners} />
       </Section>
 
       <Section className="md:bg-white-bg relative">
@@ -59,36 +50,57 @@ export function Home({
         ></div>
 
         <Showcase
-          games={[]}
+          title={sections?.newGames?.title ?? 'New Releases'}
+          games={newReleases}
           titleColor='black'
           mobileTitleColor='white'
           arrowColor='black'
+          hasHighlight
+        />
+      </Section>
+
+      {/* Most Popular Games */}
+      <Section>
+        <Showcase
+          title={sections?.popularGames?.title ?? 'Popular Games'}
+          games={sections?.popularGames?.games ?? []}
+          titleColor='white'
+          mobileTitleColor='white'
+          arrowColor='white'
+          hasHighlight
+          isMostPopularGames
+          bannerTitle='Red Dead is back!'
+          bannerSubtitle='Come and discover the new adventures of John Marston'
         />
       </Section>
 
       <Section>
         <Showcase
-          title="Most Populars"
+          title={sections?.upcomingGames?.title ?? 'Upcoming'}
           titleColor="white"
-          mobileTitleColor='white'
-          arrowColor='white'
-          games={[]}
-        />
-      </Section>
-
-      {/* <Section>
-        <Showcase
-          title="Upcoming"
-          titleColor="white"
-          gameHighlight={upcomingHighlight}
-          games={newReleases}
+          games={upcomingGames}
           arrowColor="white"
         />
       </Section>
 
       <Section>
         <Showcase
-          gameHighlight={upcomingHighlight}
+          title={sections?.freeGames?.title ?? 'Free'}
+          titleColor="white"
+          mobileTitleColor='white'
+          arrowColor='white'
+          games={freeGames}
+          hasHighlight
+          isFreeGames
+          bannerTitle='Are you familiar with the classic CS:GO?'
+          bannerSubtitle='Play one of the greatest FPS classics'
+        />
+      </Section>
+
+
+
+      {/* <Section>
+        <Showcase
           games={newReleases}
           arrowColor="white"
         />

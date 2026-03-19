@@ -12,12 +12,12 @@ import {
   GameDetails
 } from '@/app/(app)/_components/GameDetails'
 import { Separator } from '@/components/ui/separator'
-import type { GameBySlug } from '../../(game-layout)/game/[slug]/page'
+import type { GetGameBySlugQuery } from '@/app/graphql/generated/game-by-slug'
 
-export function Game(game: GameBySlug) {
+export function Game(game: GetGameBySlugQuery['games'][0]) {
 
   const gameInfo = {
-    cover: game.cover?.url ?? 'https://via.placeholder.com/150',
+    cover: game.cover?.url ?? '',
     title: game.title ?? '',
     description: game.short_description ?? '',
     price: game.price ?? 0,
@@ -47,7 +47,7 @@ export function Game(game: GameBySlug) {
   return (
     <div className="bg-main-bg">
       {/* Hero/Cover */}
-      <div className="bg-black h-130 relative">
+      <div className="bg-black h-140 relative">
         <div className="relative h-full w-full">
           {game.cover?.url ? (
             <Image
@@ -72,7 +72,7 @@ export function Game(game: GameBySlug) {
 
       {/* GameInfo - puxado para cima com margin negativa */}
       <div className="px-6 w-full max-w-grid-container mx-auto pl-grid-gutter space-y-10 md:space-y-18.25 pb-20">
-        <div className="relative -mt-50 md:-mt-38">
+        <div className="relative -mt-50 md:-mt-36">
           <GameInfo {...gameInfo} />
         </div>
         <div>

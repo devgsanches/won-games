@@ -1,0 +1,6 @@
+import * as Types from './globalTypes';
+
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+export type BannerFragmentFragment = { __typename?: 'Banner', slug: string, title: string, image: { __typename?: 'UploadFile', url: string }, ribbon?: { __typename?: 'ComponentPageRibbon', ribbonText?: string | null, color?: Types.Enum_Componentpageribbon_Color | null, size?: Types.Enum_Componentpageribbon_Size | null } | null };
+
+export const BannerFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BannerFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ribbon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ribbonText"}},{"kind":"Field","name":{"kind":"Name","value":"color"}},{"kind":"Field","name":{"kind":"Name","value":"size"}}]}}]}}]} as unknown as DocumentNode<BannerFragmentFragment, unknown>;

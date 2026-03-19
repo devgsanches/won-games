@@ -9,20 +9,30 @@ import type { GamesNewReleases } from '@/app/graphql/queries/get-new-releases'
 
 export type ShowcaseProps = {
   games: GamesNewReleases[]
-  title?: string
+  title: string
   titleColor?: 'white' | 'black'
   mobileTitleColor?: 'white' | 'black'
   arrowColor?: 'white' | 'black'
   arrowColorMobile?: 'white' | 'black'
+  hasHighlight?: boolean
+  isMostPopularGames?: boolean
+  bannerTitle?: string
+  bannerSubtitle?: string
+  isFreeGames?: boolean
 }
 
 export function Showcase({
   games,
-  title = 'New Releases',
+  title,
   titleColor = 'white',
   mobileTitleColor = 'white',
   arrowColor = 'black',
   arrowColorMobile = 'white',
+  hasHighlight = false,
+  isMostPopularGames = false,
+  bannerTitle,
+  bannerSubtitle,
+  isFreeGames = false,
 }: ShowcaseProps) {
   const isMobile = useMediaQuery('(max-width: 768px)')
 
@@ -38,7 +48,7 @@ export function Showcase({
           />
         </div>
       )}
-      {games && <Highlight title={games[0]?.title ?? ''} subtitle={games[0]?.short_description ?? ''} textDirection={'right'} textButton={'Buy now'} />}
+      {games && hasHighlight && <Highlight title={bannerTitle ?? 'School has never been this dangerous'} subtitle={bannerSubtitle ?? 'Master the hallways, face the bullies and make your name'} textDirection={'right'} textButton={'Buy now'} isMostPopularGames={isMostPopularGames} isFreeGames={isFreeGames}/>}
 
       {games && (
         <div className="pl-grid-gutter">

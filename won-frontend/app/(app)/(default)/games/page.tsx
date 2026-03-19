@@ -32,7 +32,7 @@ async function getGames(page: number): Promise<Game[]> {
     return notFound()
   }
 
-  return data.games.filter((g): g is Game => g != null)
+  return data.games
 }
 
 type PageProps = {

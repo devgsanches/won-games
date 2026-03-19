@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client"
+import { GameFragment } from "../fragments/game"
 
 export const GET_GAMES = gql`
   query GetGames($limit: Int!, $start: Int!) {
@@ -6,15 +7,9 @@ export const GET_GAMES = gql`
       pagination: { limit: $limit, start: $start }
       sort: ["updatedAt:desc"]
     ) {
-      title
-      slug
-      cover {
-        url
-      }
-      developers {
-        name
-      }
-      price
+      ...GameFragment
     }
   }
+
+  ${GameFragment}
 `

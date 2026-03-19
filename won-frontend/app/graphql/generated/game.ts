@@ -1,0 +1,6 @@
+import * as Types from './globalTypes';
+
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+export type GameFragmentFragment = { __typename?: 'Game', title: string, slug?: string | null, price: number, release_date?: any | null, cover?: { __typename?: 'UploadFile', url: string } | null, developers: Array<{ __typename?: 'Developer', name: string }> };
+
+export const GameFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"GameFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Game"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"cover"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"developers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"release_date"}}]}}]} as unknown as DocumentNode<GameFragmentFragment, unknown>;

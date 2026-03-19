@@ -4,9 +4,6 @@ import type { GetGameBySlugQuery } from '@/app/graphql/generated/game-by-slug'
 import { notFound } from 'next/navigation'
 import { GetGameBySlugDocument } from '@/app/graphql/generated/game-by-slug'
 
-export type GameBySlug = NonNullable<
-  import('@/app/graphql/generated/game-by-slug').GetGameBySlugQuery['games'][number]
->
 
 type GamePageProps = {
   params: Promise<{ slug: string }>
@@ -15,9 +12,14 @@ type GamePageProps = {
 export default async function GamePage({ params }: GamePageProps) {
   const { slug } = await params
 
+  const slugReplaced = slug.replace(/-/g, '_')
+
+  console.log({ slugReplaced });
+
+
   const { data, error } = await query<GetGameBySlugQuery>({
     query: GetGameBySlugDocument,
-    variables: { slug: slug },
+    variables: { slug: slugReplaced },
     context: { fetchOptions: { next: { revalidate: 300 } } },
   })
 
@@ -26,6 +28,9 @@ export default async function GamePage({ params }: GamePageProps) {
   }
 
   const game = data?.games?.[0]
+
+  console.log({ game });
+
 
   if (!game) {
     return notFound()

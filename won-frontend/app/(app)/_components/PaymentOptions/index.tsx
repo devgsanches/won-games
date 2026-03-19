@@ -2,6 +2,7 @@ import { Plus, ShoppingCartIcon } from 'lucide-react'
 import { CardOption, Card } from '../CardOption'
 import { Heading } from '../Heading'
 import { Button } from '../Button'
+import { useCartStore } from '../../_store/cart'
 
 const cards: Card[] = [
   { id: '1', flag: 'master-card', cardNumber: '**** **** **** 4325' },
@@ -9,6 +10,38 @@ const cards: Card[] = [
 ]
 
 export function PaymentOptions() {
+
+  const { items: cartItems } = useCartStore()
+
+  async function handleFinishOrder() {
+    if (cartItems.length === 0) return
+
+    try {
+      const res = await fetch('http://localhost:1337/api/stripe/create-checkout', {
+        method: 'POST',
+        body: JSON.stringify({
+          items: cartItems,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = res.ok
+        ? await res.json()
+        : { error: res.statusText || 'Erro ao criar checkout' }
+
+      if (res.ok && data?.url) {
+        window.location.href = data.url
+      } else {
+        console.error('Erro no checkout:', data)
+      }
+    } catch (error) {
+      console.error('Erro ao processar checkout:', error)
+    }
+  }
+
+
   return (
     <div className="flex flex-col justify-between bg-white h-full">
       <div className="p-4">
@@ -40,7 +73,7 @@ export function PaymentOptions() {
           </Button>
         </div>
         <div className="w-1/2 flex justify-centers">
-          <Button fullWidth>
+          <Button fullWidth onClick={handleFinishOrder}>
             <p className="flex items-center gap-2.5">
               <ShoppingCartIcon
                 strokeWidth={1.7}

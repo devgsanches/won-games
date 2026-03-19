@@ -9,8 +9,9 @@ export default [
     ribbonText: 'New Release'
   },
   {
-    imageUrl:
-      'https://ibitelecom.com.br/wp-content/uploads/2023/11/image-8.jpeg',
+    image: {
+      url: 'https://ibitelecom.com.br/wp-content/uploads/2023/11/image-8.jpeg'
+    },
     title: 'Salve a cidade',
     subtitle: 'Jogue a nova temporada de',
     gameName: 'O Universo do Homem-Aranha'

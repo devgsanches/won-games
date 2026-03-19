@@ -1,3 +1,4 @@
+import { getFormattedCurrency } from '@/lib/format-price'
 import { Download } from 'lucide-react'
 import Image from 'next/image'
 
@@ -43,8 +44,8 @@ export function GameItem({
                   />
                 )}
               </div>
-              <div className="bg-secondary rounded-[2px] p-1.5 flex items-center w-20 h-5.75">
-                <p className="font-medium text-white">R${price},00</p>
+              <div className="bg-secondary rounded-[2px] p-1.5 flex items-center max-w-20 w-fit h-5.75">
+                <p className="font-medium text-white">{getFormattedCurrency(price ?? 0)}</p>
               </div>
             </div>
           </div>

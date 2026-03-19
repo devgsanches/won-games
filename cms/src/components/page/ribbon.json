@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_page_ribbons",
+  "info": {
+    "displayName": "Ribbon"
+  },
+  "options": {},
+  "attributes": {
+    "ribbonText": {
+      "type": "string"
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary"
+      ]
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": [
+        "small",
+        "large"
+      ]
+    }
+  },
+  "config": {}
+}

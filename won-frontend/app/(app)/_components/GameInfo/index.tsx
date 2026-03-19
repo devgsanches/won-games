@@ -9,6 +9,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import { useState } from 'react'
 import { useCartStore } from '../../_store/cart'
 import { getFormattedCurrency } from '@/lib/format-price'
+import { cn } from '@/lib/utils'
 export interface GameInfoProps {
   cover: string
   title: string
@@ -33,12 +34,14 @@ export function GameInfo({ cover, title, description, price, developers }: GameI
     <div className="bg-white p-6 md:p-6 relative flex flex-col gap-6.5 md:gap-0 max-w-7xl mx-auto">
       <div className="flex flex-col gap-4.5">
         <div className="flex items-center justify-between">
-          <Heading
-            text={title}
-            color="black"
-            size={isMobile ? 'xlarge' : 'xxlarge'}
-            decorate={{ color: 'primary', orientation: 'horizontal' }}
-          />
+          <div className={cn('', isMobile ? 'max-w-76' : '')}>
+            <Heading
+              text={title}
+              color="black"
+              size={isMobile ? 'xlarge' : 'xxlarge'}
+              decorate={{ color: 'primary', orientation: 'horizontal' }}
+            />
+          </div>
 
           {isMobile && (
             <div className="bg-secondary rounded-[2px] p-1 px-1.5 flex items-center absolute -right-2.5">

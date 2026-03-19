@@ -199,7 +199,7 @@ export function GameGallery({ images }: GameGalleryProps) {
             </button>
 
             <div
-              className="relative w-full max-w-[min(120rem,100%)] max-h-320 px-4 lg:px-16"
+              className="relative w-full max-w-[min(95rem,100%)] max-h-320 px-4 lg:px-16"
               onClick={(e) => e.stopPropagation()}
             >
               <Swiper

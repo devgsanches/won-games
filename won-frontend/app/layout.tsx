@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
 import { ApolloProviderWrapper } from "@/lib/apollo-client"
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -28,7 +29,9 @@ export default function RootLayout({
       <body className="antialiased min-h-screen overflow-x-hidden">
         <main className="flex-1">
           <ApolloProviderWrapper>
-            {children}
+            <TooltipProvider>
+              {children}
+            </TooltipProvider>
           </ApolloProviderWrapper>
         </main>
       </body>

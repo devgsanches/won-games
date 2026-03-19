@@ -10,7 +10,7 @@ export default factories.createCoreController(
     async populate(ctx) {
       console.log('RODANDO NO SERVIDOR')
       const options = {
-        limit: 45,
+        limit: 65,
         order: 'desc:trending',
         ...ctx.query,
       }

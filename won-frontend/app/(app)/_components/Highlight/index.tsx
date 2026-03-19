@@ -1,30 +1,31 @@
 import Image from 'next/image'
 import { Button } from '../Button'
+import { cn } from '@/lib/utils'
 
 export interface HighlightProps {
   title: string
   subtitle: string
-  textDirection: 'left' | 'right'
-  textButton: string
+  textDirection?: 'left' | 'right'
+  textButton?: string
+  isMostPopularGames?: boolean
+  isFreeGames?: boolean
 }
 
 export function Highlight({
   title,
   subtitle,
-  textDirection,
-  textButton
+  textDirection = 'right',
+  textButton = 'Buy now',
+  isMostPopularGames = false,
+  isFreeGames = false,
 }: HighlightProps) {
+  const avatarImage = isMostPopularGames ? '/avatar-read-dead.png' : isFreeGames ? '/avatar-csgo.png' : '/bully.png'
   return (
     <div className="relative h-57.5 w-full md:w-full overflow-hidden">
       <div
-        className={`absolute h-full w-full
-          bg-[url(/bully_cover.jpg)]
-          bg-cover
-          bg-center
-          bg-no-repeat
-          md:bg-position-[center_-55px]`}
+        className={cn('absolute h-full w-full bg-cover bg-center bg-no-repeat ', isMostPopularGames ? 'bg-[url(/read-dead-bg.png)] md:bg-position-[center_-315px]' : isFreeGames ? 'bg-[url(/free-games-bg.png)] md:bg-position-[center_-55px]' : 'bg-[url(/bully_cover.jpg)] md:bg-position-[center_-55px]')}
       >
-        <div className="absolute inset-0 bg-black/80" />
+        <div className={cn('absolute inset-0', !isFreeGames ? 'bg-black/80' : 'bg-black/90')} />
 
         <div
           className={`relative h-full w-full ${textDirection === 'left' ? 'grid grid-cols-[62%_38%]' : 'grid grid-cols-[38%_62%]'}  ${textDirection === 'left' ? 'md:grid-cols-[80%_20%]' : 'md:grid-cols-[20%_80%]'}`}
@@ -46,7 +47,7 @@ export function Highlight({
             <div className="flex items-end w-full h-full md:relative">
               <div className="md:flex md:absolute md:h-full md:w-full lg:left-10 w-full h-full flex items-end">
                 <Image
-                  src="/bully.png"
+                  src={avatarImage}
                   alt="Avatar"
                   width={266}
                   height={310}
@@ -59,7 +60,7 @@ export function Highlight({
             <div className="flex items-end w-full h-full md:relative">
               <div className="md:flex md:absolute md:h-full md:w-full lg:right-10 w-full h-full flex items-end">
                 <Image
-                  src="/bully.png"
+                  src={avatarImage}
                   alt="Avatar"
                   width={266}
                   height={310}
@@ -70,7 +71,7 @@ export function Highlight({
           ) : (
             <div className="w-full flex flex-col gap-4 md:gap-3 pr-2.75 md:pr-12 md:pb-12 md:justify-end">
               <div className="pt-4.75 flex flex-col md:items-end">
-                <p className="text-lg md:text-xxxlarge font-semibold truncate ">
+                <p className="text-lg md:text-xxxlarge font-semibold truncate text-right">
                   {title}
                 </p>
                 <p className="text-sm md:text-base md:max-w-3xl font-light text-right">{subtitle}</p>
@@ -83,6 +84,6 @@ export function Highlight({
           )}
         </div>
       </div>
-    </div>
+    </div >
   )
 }

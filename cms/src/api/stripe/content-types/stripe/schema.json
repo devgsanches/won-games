@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "stripes",
+  "info": {
+    "singularName": "stripe",
+    "pluralName": "stripes",
+    "displayName": "Stripe"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "config": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

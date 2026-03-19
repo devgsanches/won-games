@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "banners",
+  "info": {
+    "singularName": "banner",
+    "pluralName": "banners",
+    "displayName": "Banner"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 40,
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "ribbon": {
+      "type": "component",
+      "component": "page.ribbon",
+      "repeatable": false
+    }
+  }
+}
