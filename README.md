@@ -221,5 +221,3 @@ A URI do GraphQL é configurada no Apollo Client (`uri: "http://localhost:1337/g
 - **Vitest** + **Testing Library** para testes unitários
 - **Storybook** para documentação de componentes
 - **Husky** + **lint-staged** para execução automática de lint/testes em commits
-
----
